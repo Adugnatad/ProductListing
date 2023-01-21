@@ -9,6 +9,7 @@ const PageContent = () => {
     return (
         <Box w="60%" px={10} mb="50px">
             <Listing />
+            {/* <Generation /> */}
         </Box >
     )
 }
