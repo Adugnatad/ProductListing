@@ -38,8 +38,8 @@ const AIGeneration = ({ generation }) => {
         seoKeywords: Yup.array().min(3, 'atleast 3 keywords required').required('required'),
     });
     return (
-        <Flex w="100%" direction="row">
-            <Box w="35%" my="60px" px={10} >
+        <Flex w="100%" direction={{ sm: "column", md: "row" }}>
+            <Box w={{ sm: "90%", md: "35%" }} my="60px" px={10} mx={{ sm: "auto", md: 0 }}>
                 <Heading mb="30px">AI Generation</Heading>
                 <Formik
                     initialValues={{
@@ -208,7 +208,7 @@ const AIGeneration = ({ generation }) => {
                 </Formik>
             </Box>
             <Box w="50px" mt="60px" bgGradient='linear(to-r, #fff, #fafafa, #ddd)' />
-            <PageContent />
+            <PageContent generation={generation} />
         </Flex >
     )
 }

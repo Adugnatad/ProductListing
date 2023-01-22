@@ -12,6 +12,13 @@ export const theme = extendTheme({
       500: '#F96F02',
       900: '#F96F02',
     }
+  },
+  breakpoints: {
+    sm: '0px',
+    md: '970px',
+    lg: '960px',
+    xl: '1200px',
+    '2xl': '1536px',
   }
 })
 const root = ReactDOM.createRoot(document.getElementById('root'));

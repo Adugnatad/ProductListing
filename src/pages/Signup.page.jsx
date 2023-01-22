@@ -7,7 +7,8 @@ import {
     Box,
     Link,
     Button,
-    Center
+    Center,
+    Heading
 } from '@chakra-ui/react'
 import { FcGoogle } from 'react-icons/fc';
 import LandingPage from '../components/LandingPage/LandingPage';
@@ -22,10 +23,10 @@ function Signup() {
     });
     return (
 
-        <Box display="flex" flexDirection="row" justifyContent="between" w="full" h="100vh">
-            <Box w="25%" display="flex" flexDirection="column" alignItems="center" justifyContent="center">
+        <Box display="flex" flexDirection={{ sm: "column-reverse", md: "row" }} alignItems={{ sm: "center", md: "normal" }} justifyContent={{ sm: "start", md: "between" }} w="full" h="100vh">
+            <Box w={{ sm: "90%", md: "30%" }} display="flex" flexDirection="column" alignItems="center" justifyContent="center">
                 <Box w="90%" display="flex" flexDirection="column" mx={10}>
-                    <Text fontWeight="bold" fontSize={23}>Sign up</Text>
+                    <Heading mb={2}>Sign up</Heading>
                     <Box display='flex' flexDirection="row">
                         <Text mr={2}>or </Text>
                         <Link color='#5897f9' href='#'>sign in to your account</Link>

@@ -78,7 +78,7 @@ const Listing = () => {
                     ))}
                 </Stack>
                 <Flex position="relative" direction='column' align="center" justifyContent="center">
-                    <Stack spacing={3} ml={7} w="90%" filter={showPaywall && "blur(5px)"} userSelect={showPaywall && "none"} pointerEvents={showPaywall && "none"} position="relative">
+                    <Stack spacing={3} ml={7} w={{ sm: "100%", md: "90%" }} filter={showPaywall && "blur(5px)"} userSelect={showPaywall && "none"} pointerEvents={showPaywall && "none"} position="relative">
                         <Text fontSize='32px' fontWeight="bold">Product Description</Text>
                         {productDescription.map((pd, index) => (
                             <>
@@ -96,7 +96,7 @@ const Listing = () => {
                         ))}
                     </Stack>
 
-                    <Flex display={!showPaywall ? "none" : "flex"} direction="column" align="center" w="380px" py={3} backgroundColor="#F4A023E0" color="#fff" position="absolute" >
+                    <Flex display={!showPaywall ? "none" : "flex"} direction="column" align="center" w={{ sm: "250px", md: "380px" }} py={3} px={2} backgroundColor="#F4A023E0" color="#fff" position="absolute" >
                         <Text fontWeight="bold">Generate full Product Listings Includes</Text>
                         <UnorderedList>
                             <ListItem>Includes Description</ListItem>

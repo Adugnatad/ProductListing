@@ -12,11 +12,9 @@ import Upgrade from './components/Ugrade/Upgrade';
 import { useState } from 'react';
 
 function App() {
-  // return <Signup />
-  // return <Login />
   const [showPage, setShowPage] = useState(0);
   const showPages = () => {
-    if (showPage >= 4) {
+    if (showPage >= 6) {
       setShowPage(0)
     } else {
       setShowPage(showPage + 1);
@@ -24,13 +22,14 @@ function App() {
   }
   return (
     <>
-      <Header />
-      {/* <AIGeneration generation={false} /> */}
-      {showPage === 0 && <TableListing />}
+      {showPage !== 0 && showPage !== 5 && <Header />}
+      {showPage === 3 && <AIGeneration generation={true} />}
+      {showPage === 4 && <AIGeneration generation={false} />}
+      {showPage === 2 && <TableListing />}
       {showPage === 1 && <Account />}
-      {showPage === 2 && <Upgrade />}
-      {showPage === 3 && <Login />}
-      {showPage === 4 && <Signup />}
+      {showPage === 6 && <Upgrade />}
+      {showPage === 0 && <Login />}
+      {showPage === 5 && <Signup />}
       <button onClick={showPages}>Next</button>
     </>
   )

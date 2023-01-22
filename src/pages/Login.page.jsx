@@ -12,7 +12,8 @@ import {
     Box,
     Link,
     Button,
-    Center
+    Center,
+    Heading
 } from '@chakra-ui/react'
 import { Formik } from 'formik';
 import { FcGoogle } from 'react-icons/fc';
@@ -27,23 +28,22 @@ const Login = () => {
         password: Yup.string().required("required"),
     });
     return (
-        <Box display="flex" flexDirection="row" justifyContent="between" w="full" h="100vh">
-            <Box w="25%" display="flex" flexDirection="column" alignItems="center" justifyContent="center">
+        <Box display="flex" flexDirection={{ sm: "column-reverse", md: "row" }} alignItems={{ sm: "center", md: "normal" }} justifyContent={{ sm: "start", md: "between" }} w="full" h="100vh">
+            <Box w={{ sm: "90%", md: "30%" }} display="flex" flexDirection="column" alignItems="center" justifyContent="center" my={5}>
                 <Box display="flex" flexDirection="column" mx={10} w="90%">
                     <Box display="flex" flexDirection="row" alignItems="center" justifyContent="space-between" w="100%" mb={3} className='self-start'>
-                        <Text>Sign in</Text>
+                        <Heading mb={3}>Sign in</Heading>
                         <Box display="flex" flexDirection="row" alignItems="center">
                             <Text fontSize="14px" mr={1}>or</Text>
                             <Link color="#5897f9" href='#' fontSize="14px"> create an account</Link>
                         </Box>
                     </Box>
                     <Button
-                        w={'full'}
-                        maxW={'lg'}
+                        w="100%"
                         variant={'outline'}
                         leftIcon={<FcGoogle />}
                         className="border-[1px] py-1">
-                        <Center w={300}>
+                        <Center w="100%">
                             <Text>Continue with Google</Text>
                         </Center>
                     </Button>

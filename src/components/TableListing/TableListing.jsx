@@ -1,4 +1,4 @@
-import { Box, Button, Checkbox, Flex, Input, InputGroup, InputLeftElement, Stack, Table, TableCaption, TableContainer, Tbody, Td, Text, Tfoot, Th, Thead, Tr } from '@chakra-ui/react'
+import { Box, Button, Checkbox, Flex, Heading, Input, InputGroup, InputLeftElement, Stack, Table, TableCaption, TableContainer, Tbody, Td, Text, Tfoot, Th, Thead, Tr } from '@chakra-ui/react'
 import { MdDeleteForever } from "react-icons/md"
 import { AiOutlineArrowDown, AiOutlineArrowUp } from "react-icons/ai"
 import { FiEdit2, FiSearch } from "react-icons/fi"
@@ -155,7 +155,7 @@ const TableListing = () => {
     return (
         <TableContainer mx={10}>
             <Flex direction="row" justifyContent="space-between" align="center" px="30px" py="10px">
-                <Text fontWeight="bold" fontSize={20}>Listings</Text>
+                <Heading mb={3}>Listings</Heading>
                 <Stack spacing={4}>
                     <InputGroup>
                         <InputLeftElement
@@ -192,7 +192,7 @@ const TableListing = () => {
                     {currentRows.map(data => (
                         <Tr key={data.id} id={data.id}>
                             <Td><Checkbox onChange={() => selectRow(data.id)} /></Td>
-                            <Td>{data.name}</Td>
+                            <Td cursor="pointer" onClick={() => selectRow(data.id)}>{data.name}</Td>
                             <Td>{data.brand}</Td>
                             <Td>{data.id}</Td>
                             <Td>

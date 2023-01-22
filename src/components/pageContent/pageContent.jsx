@@ -1,15 +1,14 @@
 import { Box, Button, Flex, Link, ListItem, Stack, Text, UnorderedList } from '@chakra-ui/react'
 import Generation from './generation';
 import Listing from './Listing';
-const PageContent = () => {
+const PageContent = ({ generation }) => {
 
 
 
 
     return (
-        <Box w="60%" px={10} mb="50px">
-            <Listing />
-            {/* <Generation /> */}
+        <Box w={{ sm: "90%", md: "60%" }} px={10} mb="50px">
+            {!generation ? <Generation /> : <Listing />}
 
         </Box >
     )

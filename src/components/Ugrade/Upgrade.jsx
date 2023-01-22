@@ -6,16 +6,16 @@ import React from 'react'
 const Upgrade = () => {
     return (
         <Flex direction="column" align="flex-start" m={7}>
-            <Heading size="xl" ml={5}>Upgrade your Account</Heading>
-            <Flex direction="column" align="center" bgColor="#F8F8F8" w="100%" py={3} px={5} my={10} alignSelf="center">
+            <Heading ml={5}>Upgrade your Account</Heading>
+            <Flex direction="column" align="center" w="100%" py={3} px={5} my={10} alignSelf="center">
                 <FormControl display='flex' alignItems='center' w="fit-content" px={2} py={2} bgColor="#fff" borderRadius={5}>
                     <FormLabel htmlFor='email-alerts' mb='0'>
                         Pay Annually and Save!
                     </FormLabel>
                     <Switch id='email-alerts' colorScheme='brand' defaultChecked />
                 </FormControl>
-                <Flex w="100%" justifyContent="center">
-                    <Flex direction="column" align="center" bgColor="#fff" py={4} px={3} my={3} mr={10} w="290px" borderRadius="10px">
+                <Flex w="100%" flexDirection={{ sm: "column", md: "row" }} justifyContent="center" align={{ sm: "center", md: "normal" }}>
+                    <Flex direction="column" align="center" bgColor="#fff" borderWidth={1} py={4} px={3} my={3} mr={{ md: 10 }} w={{ sm: "90%", md: "290px" }} borderRadius="10px">
                         <Stack textAlign="center" spacing={1} mb={5}>
                             <Text fontSize="20px" fontWeight="bold">Lite</Text>
                             <Text fontSize="14px" fontWeight="medium">For Beginners</Text>
@@ -43,7 +43,7 @@ const Upgrade = () => {
                             Start Now
                         </Button>
                     </Flex>
-                    <Flex direction="column" align="center" bgColor="#fff" borderWidth={1} borderColor="#F96F02" py={4} px={3} my={3} mr={10} w="290px" borderRadius="10px" position="relative">
+                    <Flex direction="column" align="center" bgColor="#fff" borderWidth={1} borderColor="#F96F02" py={4} px={3} my={3} mr={{ md: 10 }} w={{ sm: "90%", md: "290px" }} borderRadius="10px" position="relative">
                         <Text fontSize="11px" color="#fff" bgColor="#F96F02" p="0.5" borderBottomLeftRadius="3" borderTopRightRadius="10px" position="absolute" top="0" right="-0.1">MOST POPULAR</Text>
                         <Stack textAlign="center" spacing={1} mb={5}>
                             <Text fontSize="20px" fontWeight="bold">Professional</Text>
@@ -72,7 +72,7 @@ const Upgrade = () => {
                             Start Now
                         </Button>
                     </Flex>
-                    <Flex direction="column" align="center" bgColor="#fff" py={4} px={3} my={3} mr={10} w="290px" borderRadius="10px">
+                    <Flex direction="column" align="center" bgColor="#fff" borderWidth={1} py={4} px={3} my={3} mr={{ md: 10 }} w={{ sm: "90%", md: "290px" }} borderRadius="10px">
                         <Stack textAlign="center" spacing={1} mb={5}>
                             <Text fontSize="20px" fontWeight="bold">Custom</Text>
                             <Text fontSize="14px" fontWeight="medium">For Teams</Text>
