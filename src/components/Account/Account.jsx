@@ -1,0 +1,128 @@
+import { InfoOutlineIcon } from '@chakra-ui/icons'
+import { Box, Button, Flex, FormControl, FormLabel, Heading, Input, Select, Stack, Text } from '@chakra-ui/react'
+import { Form, Formik } from 'formik'
+import * as Yup from 'yup';
+import React from 'react'
+
+const Account = () => {
+    const LoginSchema = Yup.object().shape({
+        firstName: Yup.string().required('Required'),
+        lastName: Yup.string().required('Required'),
+        email: Yup.string().email('Invalid email').required('Required'),
+    });
+    return (
+        <Box m={20}>
+            <Heading size="2xl">Your Account</Heading>
+            <Formik
+                initialValues={{
+                    firstName: '',
+                    lastName: '',
+                    email: ''
+                }}
+                validationSchema={LoginSchema}
+                onSubmit={(values) => {
+                    alert(JSON.stringify(values, null, 2))
+                }}>
+                {({ values, errors, touched, handleChange, handleSubmit }) => (
+                    <Stack align="start" w="55%" mt={20} mx="4%">
+                        <Heading size="xl">Profile settings</Heading>
+                        <Flex direction="row" align="" w="100%">
+                            <FormControl w="100%" mr={7}>
+                                <FormLabel color="#686868">First name</FormLabel>
+                                <Input size='md' w="100%" name='firstName' className='outline-0 border-[1px] border-[#ddd' onChange={handleChange} value={values.firstName} />
+                                {errors.firstName && touched.firstName ? (<Text fontSize={14} color="#ff0000">{errors.firstName}</Text>) : null}
+                            </FormControl>
+                            <FormControl w="100%">
+                                <FormLabel color="#686868">Last name</FormLabel>
+                                <Input size='md' w="100%" name='lastName' className='outline-0 border-[1px] border-[#ddd' onChange={handleChange} value={values.lastName} />
+                                {errors.lastName && touched.lastName ? (<Text fontSize={14} color="#ff0000">{errors.lastName}</Text>) : null}
+                            </FormControl>
+                        </Flex>
+
+                        <FormControl w="100%" >
+                            <FormLabel color="#686868">Email</FormLabel>
+                            <Input size='md' w="100%" name='email' className='outline-0 border-[1px] border-[#ddd' onChange={handleChange} value={values.email} />
+                            {errors.email && touched.email ? (<Text fontSize={14} color="#ff0000">{errors.email}</Text>) : null}
+                        </FormControl>
+
+                        <Box w="100%">
+                            <hr className='mt-5' />
+                        </Box>
+                        <Button onClick={handleSubmit} bgGradient='linear(to-r, pink.500, blue.600)' color="#fff">Save</Button>
+                    </Stack>
+                )}
+            </Formik>
+
+            <Stack align="start" w="55%" mt={20} mx="6%">
+                <Text fontSize="25px" fontWeight="bold">Billing</Text>
+                <Text fontSize="18px" color="#586A7E" fontWeight="semibold">Available credits</Text>
+                <Flex direction="row" align="center" w="100%">
+                    <Flex direction="column" justify="center" borderWidth="1px" borderRadius="7px" p={7} mr={7} w="33%">
+                        <Flex direction="row" align="center">
+                            <Text fontSize="14px" fontWeight="bold" color="#586A7E" mr={2}>Total credits</Text>
+                            <InfoOutlineIcon color="#ddd" />
+                        </Flex>
+                        <Text fontSize="28px" fontWeight="bold">208,000</Text>
+                        <Text fontSize="12px" color="#586A7E">0% of plan credits used</Text>
+                    </Flex>
+                    <Flex direction="column" justify="center" borderWidth="1px" borderRadius="7px" p={7} mr={7} w="33%">
+                        <Flex direction="row" align="center">
+                            <Text fontSize="14px" fontWeight="bold" color="#586A7E" mr={2}>Plan credits</Text>
+                            <InfoOutlineIcon color="#ddd" />
+                        </Flex>
+                        <Text fontSize="28px" fontWeight="bold">50,000</Text>
+                        <Text fontSize="12px" color="#586A7E">0% of plan credits used</Text>
+                    </Flex>
+                    <Flex direction="column" justify="center" borderWidth="1px" borderRadius="7px" p={7} w="33%">
+                        <Flex direction="row" align="center">
+                            <Text fontSize="14px" fontWeight="bold" color="#586A7E" mr={2}>Bonus credits</Text>
+                            <InfoOutlineIcon color="#ddd" />
+                        </Flex>
+                        <Text fontSize="28px" fontWeight="bold">158,000</Text>
+                        <Text fontSize="12px" color="#586A7E">0% of plan credits used</Text>
+                    </Flex>
+                </Flex>
+                <Flex direction="column" align="start" p={4} pt={10} w="100%" borderWidth="1px" borderRadius="7px">
+                    <Flex direction="column" ml={5}>
+                        <Text fontSize={16} fontWeight="medium" mb={3}>Subscription</Text>
+                        <Flex direction="row" align="center">
+                            <Text mr={2} fontSize="18px" fontWeight="semibold">Boss Mode</Text>
+                            <Button color='#50D18E' borderColor="#50D18E" variant='outline' fontSize="14px" height="25px" width="60px">ACTIVE</Button>
+                        </Flex>
+                        <Text fontSize={16} color="#586A7E">50000 word credits</Text>
+                        <Text fontSize={16} color="#586A7E">Billing cycle renews in 21 days</Text>
+                    </Flex>
+                    <Flex my={3} alignSelf="flex-end" color="#586A7E">
+                        <Button height={30} mr={3}>Edit payment details</Button>
+                        <Button height={30} variant="outline">Edit plan</Button>
+                    </Flex>
+                    <Box w="100%">
+                        <hr className='my-5' />
+                    </Box>
+                    <Flex direction="column" align="center" alignSelf="center" color="#586A7E">
+                        <Text mb={2}>If I go over my plan limit for the month</Text>
+                        <Select placeholder='Select option'>
+                            <option selected value='option1'>Do nothing and wait for me to manually update my plan</option>
+                        </Select>
+                    </Flex>
+                </Flex>
+            </Stack>
+            <Flex direction="row" justify="space-between" align="center" borderWidth="1px" borderRadius="7px" w="55%" mx="6%" px={5} py={6} my={3}>
+                <Flex direction="column">
+                    <Text color="#5C82F9" fontWeight="bold" fontSize="18px">Get 2 months free ✌</Text>
+                    <Text color="#586A7E">Pay annually to get 2 months free.</Text>
+                </Flex>
+                <Button bgGradient='linear(to-r, pink.500, blue.600)' color="#fff" height={30}>View details</Button>
+            </Flex>
+            <Flex direction="row" justify="space-between" align="center" borderWidth="1px" borderRadius="7px" w="55%" mx="6%" px={5} py={6} my={3}>
+                <Flex direction="column">
+                    <Text fontWeight="bold" fontSize="18px">Invoices</Text>
+                    <Text color="#586A7E">View your payment history</Text>
+                </Flex>
+                <Button variant="outline" color="#586A7E" height={30}>View billing history</Button>
+            </Flex>
+        </Box >
+    )
+}
+
+export default Account

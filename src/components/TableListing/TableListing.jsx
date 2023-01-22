@@ -1,47 +1,215 @@
-import { Checkbox, Table, TableCaption, TableContainer, Tbody, Td, Tfoot, Th, Thead, Tr } from '@chakra-ui/react'
-import React from 'react'
+import { Box, Button, Checkbox, Flex, Input, InputGroup, InputLeftElement, Stack, Table, TableCaption, TableContainer, Tbody, Td, Text, Tfoot, Th, Thead, Tr } from '@chakra-ui/react'
+import { MdDeleteForever } from "react-icons/md"
+import { AiOutlineArrowDown, AiOutlineArrowUp } from "react-icons/ai"
+import { FiEdit2, FiSearch } from "react-icons/fi"
+import { Icon } from '@chakra-ui/react'
+import { useEffect, useState } from 'react'
 
 const TableListing = () => {
+
+    const tableData = [
+        {
+            name: "aleur de Sel ",
+            brand: "cablissima",
+            id: "78342"
+        },
+        {
+            name: "eleur de Sel ",
+            brand: "aablissima",
+            id: "18343"
+        },
+        {
+            name: "dleur de Sel ",
+            brand: "dablissima",
+            id: "58344"
+        },
+        {
+            name: "dleur de Sel ",
+            brand: "dablissima",
+            id: "08344"
+        },
+        {
+            name: "dleur de Sel ",
+            brand: "dablissima",
+            id: "98344"
+        },
+        {
+            name: "dleur de Sel ",
+            brand: "dablissima",
+            id: "38344"
+        }
+    ]
+    const [sortName, setSortName] = useState(0);
+    const [sortBrand, setSortBrand] = useState(0);
+    const [sortIds, setSortIds] = useState(0);
+    const [searchText, setSearchText] = useState("");
+    const [sortedData, setSortedData] = useState(tableData);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [rowsPerPage, setRowsPerPage] = useState(3);
+
+    const indexOfLastRow = currentPage * rowsPerPage;
+    const indexOfFirstRow = indexOfLastRow - rowsPerPage;
+    const currentRows = sortedData.slice(indexOfFirstRow, indexOfLastRow);
+
+    useEffect(() => {
+        if (sortName === 0) {
+            setSortedData(tableData);
+        } else if (sortName === 1) {
+            const data = [...tableData].sort((a, b) =>
+                a.name.toLowerCase() < b.name.toLowerCase() ? -1 : 1)
+            setSortedData(data)
+        } else if (sortName === 2) {
+            const data = [...tableData].sort((a, b) =>
+                a.name.toLowerCase() > b.name.toLowerCase() ? -1 : 1)
+            setSortedData(data)
+        }
+
+    }, [sortName])
+
+    useEffect(() => {
+        if (sortBrand === 0) {
+            setSortedData(tableData);
+        } else if (sortBrand === 1) {
+            const data = [...tableData].sort((a, b) =>
+                a.brand.toLowerCase() < b.brand.toLowerCase() ? -1 : 1)
+            setSortedData(data)
+        } else if (sortBrand === 2) {
+            const data = [...tableData].sort((a, b) =>
+                a.brand.toLowerCase() > b.brand.toLowerCase() ? -1 : 1)
+            setSortedData(data)
+        }
+
+    }, [sortBrand])
+
+    useEffect(() => {
+        if (sortIds === 0) {
+            setSortedData(tableData);
+        } else if (sortIds === 1) {
+            const data = [...tableData].sort((a, b) =>
+                a.id.toLowerCase() < b.id.toLowerCase() ? -1 : 1)
+            setSortedData(data)
+        } else if (sortIds === 2) {
+            const data = [...tableData].sort((a, b) =>
+                a.id.toLowerCase() > b.id.toLowerCase() ? -1 : 1)
+            setSortedData(data)
+        }
+
+    }, [sortIds])
+
+
+    useEffect(() => {
+        const dataToSearch = tableData;
+        const data = dataToSearch.filter((row) => (row.name).toLowerCase().includes(searchText.toLowerCase()));
+        setSortedData(data);
+    }, [searchText])
+
+    const SortByName = () => {
+        if (sortName >= 2) {
+            setSortName(0);
+        } else {
+            setSortName(sortName + 1);
+        }
+    }
+
+    const SortByBrand = () => {
+        if (sortBrand >= 2) {
+            setSortBrand(0);
+        } else {
+            setSortBrand(sortBrand + 1);
+        }
+    }
+
+    const SortById = () => {
+        if (sortIds >= 2) {
+            setSortIds(0);
+        } else {
+            setSortIds(sortIds + 1);
+        }
+    }
+
+
+    const selectRow = (id) => {
+        const selectedRow = document.getElementById(id);
+        selectedRow.classList.toggle('selected')
+    }
+    const selectTable = () => {
+        const selectedRow = document.getElementById('tableBody');
+        selectedRow.classList.toggle('selected')
+    }
+    const deleteRow = (id) => {
+        const data = sortedData.filter(rows => rows.id !== id);
+        setSortedData(data);
+    }
+    const paginate = (direction) => {
+        const pageNumber = tableData.length / rowsPerPage;
+        if (direction === "back") {
+            if (currentPage > 1) {
+                setCurrentPage(currentPage - 1)
+            }
+        } else if (direction === "forward") {
+            if (currentPage < pageNumber) {
+                setCurrentPage(currentPage + 1)
+            }
+        }
+    }
     return (
-        <TableContainer>
+        <TableContainer mx={10}>
+            <Flex direction="row" justifyContent="space-between" align="center" px="30px" py="10px">
+                <Text fontWeight="bold" fontSize={20}>Listings</Text>
+                <Stack spacing={4}>
+                    <InputGroup>
+                        <InputLeftElement
+                            pointerEvents='none'
+                            children={<FiSearch color='gray.300' />}
+                        />
+                        <Input type="text" w="200px" placeHolder="Search" onChange={(e) => setSearchText(e.target.value)} />
+                    </InputGroup>
+                </Stack>
+            </Flex>
             <Table variant='simple'>
-                <TableCaption>Imperial to metric conversion factors</TableCaption>
-                <Thead>
+                <Thead bgColor="#F5F9FB">
                     <Tr>
-                        <Th><Checkbox /></Th>
-                        <Th>To convert</Th>
-                        <Th>into</Th>
-                        <Th isNumeric>multiply by</Th>
+                        <Th w="10px"><Checkbox onChange={() => selectTable()} /></Th>
+                        <Th cursor="pointer" onClick={SortByName}>
+                            Name
+                            {sortName === 2 && <Icon as={AiOutlineArrowDown} ml={3} />}
+                            {sortName === 1 && <Icon as={AiOutlineArrowUp} ml={3} />}
+                        </Th>
+                        <Th cursor="pointer" onClick={SortByBrand}>
+                            Brand
+                            {sortBrand === 2 && <Icon as={AiOutlineArrowDown} ml={3} />}
+                            {sortBrand === 1 && <Icon as={AiOutlineArrowUp} ml={3} />}
+                        </Th>
+                        <Th cursor="pointer" onClick={SortById}>
+                            ID
+                            {sortIds === 2 && <Icon as={AiOutlineArrowDown} ml={3} />}
+                            {sortIds === 1 && <Icon as={AiOutlineArrowUp} ml={3} />}
+                        </Th>
+                        <Th w="50px"></Th>
                     </Tr>
                 </Thead>
-                <Tbody>
-                    <Tr>
-                        <Td><Checkbox /></Td>
-                        <Td>inches</Td>
-                        <Td>millimetres (mm)</Td>
-                        <Td isNumeric>25.4</Td>
-                    </Tr>
-                    <Tr>
-                        <Td><Checkbox /></Td>
-                        <Td>feet</Td>
-                        <Td>centimetres (cm)</Td>
-                        <Td isNumeric>30.48</Td>
-                    </Tr>
-                    <Tr bgColor="red">
-                        <Td><Checkbox /></Td>
-                        <Td>yards</Td>
-                        <Td>metres (m)</Td>
-                        <Td isNumeric>0.91444</Td>
-                    </Tr>
+                <Tbody id='tableBody'>
+                    {currentRows.map(data => (
+                        <Tr key={data.id} id={data.id}>
+                            <Td><Checkbox onChange={() => selectRow(data.id)} /></Td>
+                            <Td>{data.name}</Td>
+                            <Td>{data.brand}</Td>
+                            <Td>{data.id}</Td>
+                            <Td>
+                                <Icon as={MdDeleteForever} mr={2} cursor="pointer" onClick={() => deleteRow(data.id)} />
+                                <Icon as={FiEdit2} cursor="pointer" mr={2} />
+                            </Td>
+                        </Tr>
+                    ))}
                 </Tbody>
-                <Tfoot>
-                    <Tr>
-                        <Th>To convert</Th>
-                        <Th>into</Th>
-                        <Th isNumeric>multiply by</Th>
-                    </Tr>
-                </Tfoot>
             </Table>
+            <Box display="flex" flexDirection="row" alignContent="center" justifyContent="space-between" px="20px" py="10px" w="100%">
+                <Text fontSize={15} color="">Showing {indexOfFirstRow} to {indexOfLastRow} of {tableData.length} results</Text>
+                <Flex direction="row" align="center">
+                    <Button variant='outline' mr={3} onClick={() => paginate("back")}>Previous</Button>
+                    <Button variant='outline' onClick={() => paginate("forward")}>Next</Button>
+                </Flex>
+            </Box>
         </TableContainer>
     )
 }
