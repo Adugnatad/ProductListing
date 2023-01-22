@@ -85,7 +85,7 @@ const Account = () => {
                         <Text fontSize={16} color="#586A7E">Billing cycle renews in 21 days</Text>
                     </Flex>
                     <Flex my={3} alignSelf={{ sm: "center", md: "flex-end" }} flexWrap="wrap" color="#586A7E">
-                        <Button height={30} mr={3}>Edit payment details</Button>
+                        <Button height={30} mr={3} mb={2}>Edit payment details</Button>
                         <Button height={30} variant="outline">Edit plan</Button>
                     </Flex>
                 </Flex>

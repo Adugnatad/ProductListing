@@ -69,15 +69,15 @@ function Signup() {
                                 </Link>
                             </Text>
                             {/* <Checkbox defaultChecked>I agree to the Dropbox Terms</Checkbox> */}
-                            <Stack spacing={5} mt={5} w="100%">
-                                <Button onClick={handleSubmit} colorScheme='blue' w="90%">Sign up</Button>
+                            <Stack spacing={5} mt={5} w="100%" alignItems={{ sm: "center", md: "flex-start" }}>
+                                <Button onClick={handleSubmit} colorScheme='blue' w={{ sm: "216.33px", md: "90%" }}>Sign up</Button>
                                 <Button
-                                    w="90%"
+                                    w={{ sm: "fit-content", md: "90%" }}
                                     maxW={'lg'}
                                     variant={'outline'}
                                     leftIcon={<FcGoogle />}
                                     className="border-[1px] py-1">
-                                    <Center w={300}>
+                                    <Center w={{ md: 300 }}>
                                         <Text>Continue with Google</Text>
                                     </Center>
                                 </Button>

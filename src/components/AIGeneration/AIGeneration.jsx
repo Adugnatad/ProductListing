@@ -123,7 +123,7 @@ const AIGeneration = ({ generation }) => {
                                             <InfoIcon mx={1} boxSize={3} alignSelf="center" />
                                         </FormLabel>
                                         <RadioGroup defaultValue={values.bulletPointsLenth}>
-                                            <Flex direction="row">
+                                            <Flex direction={{ sm: "column", md: "row" }}>
                                                 <Radio value='1' name="bulletPointsLenth" onChange={() => setFieldValue("bulletPointsLenth", 1)} mr={7}>
                                                     150 Char.
                                                 </Radio>
@@ -142,7 +142,7 @@ const AIGeneration = ({ generation }) => {
                                             <InfoIcon mx={1} boxSize={3} alignSelf="center" />
                                         </FormLabel>
                                         <RadioGroup defaultValue={values.bulletPointsEmoji}>
-                                            <Flex direction="row">
+                                            <Flex direction={{ sm: "column", md: "row" }}>
                                                 <Radio value='1' name="bulletPointsEmoji" onChange={() => setFieldValue("bulletPointsEmoji", 1)} mr={7}>
                                                     None
                                                 </Radio>
@@ -162,7 +162,7 @@ const AIGeneration = ({ generation }) => {
                                             <InfoIcon mx={1} boxSize={3} alignSelf="center" />
                                         </FormLabel>
                                         <RadioGroup defaultValue={values.descriptionEmoji}>
-                                            <Flex direction="row">
+                                            <Flex direction={{ sm: "column", md: "row" }}>
                                                 <Radio value='1' name="descriptionEmoji" onChange={() => setFieldValue("descriptionEmoji", 1)} mr={7}>
                                                     None
                                                 </Radio>
@@ -179,7 +179,7 @@ const AIGeneration = ({ generation }) => {
                                 </>
                             }
 
-                            <Button type='submit' colorScheme='blue' w="90%" mb={10}>
+                            <Button type='submit' colorScheme='blue' w="fit-content" mb={10}>
                                 {generation ? "Generate a Listing with AI" :
                                     (<Flex direction="row" align="center">
                                         <Image src='/assets/buttonIcon.svg' alt='' mx={3} />

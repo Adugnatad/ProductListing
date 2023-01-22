@@ -47,7 +47,7 @@ const Header = () => {
                     />
                 </Flex>
                 <Flex flex={{ base: 1 }} align='center' justify={{ base: 'center', md: 'start' }}>
-                    <Image src='/assets/logo.png' alt='' height={30} />
+                    <Image src='/assets/logo.png' alt='' height={30} display={{ sm: "none", md: "flex" }} />
                     <Flex display={{ base: 'none', md: 'flex' }} ml={10}>
                         <Stack direction={'row'} spacing={4}>
                             {NAV_ITEMS.map((navItem) => (

@@ -6,7 +6,8 @@ import {
 } from '@chakra-ui/react'
 const LandingPage = () => {
     return (
-        <Box display='flex' flexDirection='column' alignItems="center" justifyContent="center" w={{ sm: '100%', md: '75%' }} py={{ sm: 10, md: 0 }} color="#fff" className='bg-gradient-to-br from-[#000000] to-[#880808]'>
+        <Box display='flex' flexDirection='column' alignItems="center" justifyContent="center" w={{ sm: '100%', md: '75%' }} py={{ sm: 10, md: 0 }} px={{ sm: 2, md: 0 }
+        } color="#fff" className='bg-gradient-to-br from-[#000000] to-[#880808]' >
             <Image src='/assets/logo.png' alt='' />
             <Text fontSize={{ sm: '20', md: '50' }} fontWeight="bold" textAlign="center" className=' leading-normal'>SuperCharge your Product <br /> Listing with AI!</Text>
             <Box display='flex' flexDirection="column" alignItems="center" mt={50} w="100%">
@@ -32,7 +33,7 @@ const LandingPage = () => {
                     </Box>
                 </Box>
             </Box>
-        </Box>
+        </Box >
     )
 }
 
