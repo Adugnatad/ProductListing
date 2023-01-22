@@ -16,7 +16,7 @@ function App() {
   // return <Login />
   const [showPage, setShowPage] = useState(0);
   const showPages = () => {
-    if (showPage >= 2) {
+    if (showPage >= 4) {
       setShowPage(0)
     } else {
       setShowPage(showPage + 1);
@@ -29,6 +29,8 @@ function App() {
       {showPage === 0 && <TableListing />}
       {showPage === 1 && <Account />}
       {showPage === 2 && <Upgrade />}
+      {showPage === 3 && <Login />}
+      {showPage === 4 && <Signup />}
       <button onClick={showPages}>Next</button>
     </>
   )
