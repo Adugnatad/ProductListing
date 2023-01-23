@@ -33,7 +33,8 @@ const ResetPassword = () => {
                         <Flex direction="column" align="flex-start" w="60%">
                             {!showCode && <Input placeholder='Email' mt={5} color="#fff" name="email" onChange={handleChange} value={values.email} />}
                             {errors.email && touched.email ? (<Text fontSize={14} color="#ff0000">{errors.email}</Text>) : null}
-                            {showCode && <Input type="number" placeholder='Code' color="#fff" mt={5} />}
+                            {showCode && <Input type="number" placeholder='Code' color="#fff" mt={5} name="code" onChange={handleChange} value={values.code} />}
+                            {errors.code && touched.code ? (<Text fontSize={14} color="#ff0000">{errors.code}</Text>) : null}
                             <Button onClick={handleSubmit} colorScheme="brand" alignSelf="center" w="100%" mt={5}>{!showCode ? 'Reset' : 'submit'}</Button>
                             <Link color="#5897f9" href='#' fontSize="14px" alignSelf="center" my={4}>Go back to Login page</Link>
                         </Flex>
