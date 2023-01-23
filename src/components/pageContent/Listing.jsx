@@ -6,6 +6,7 @@ import copy from 'copy-to-clipboard';
 import { AiFillFilePdf } from "react-icons/ai";
 import { FcDocument } from "react-icons/fc";
 import { useState } from 'react';
+import TypewriterComponent from 'typewriter-effect';
 
 const Listing = () => {
     const [showPaywall, setShowPaywall] = useState(false);
@@ -62,7 +63,14 @@ const Listing = () => {
                             <UnorderedList spacing={4}>
                                 {pr.subtitle?.map((subt, index) =>
                                 (<ListItem key={index} fontSize="14px">
-                                    {subt}
+                                    <TypewriterComponent
+                                        options={{
+                                            strings: subt,
+                                            autoStart: true,
+                                            delay: 30,
+                                            cursor: ""
+                                        }}
+                                    />
                                     <Button variant='link' _hover={{
                                         textDecoration: 'none',
                                     }} > <Icon as={AiOutlineReload} mr={2} ml={4} boxSize={5} /> </Button>
@@ -91,7 +99,17 @@ const Listing = () => {
                                         textDecoration: 'none',
                                     }}>  <Icon as={MdContentCopy} mr={2} boxSize={5} /> </Button>
                                 </Flex>
-                                <Text fontWeight="">{pd.body}</Text>
+                                <Text fontWeight="">
+                                    <TypewriterComponent
+                                        options={{
+                                            strings: pd.body,
+                                            autoStart: true,
+                                            delay: 30,
+                                            cursor: ""
+                                        }}
+                                    />
+                                    {/* {pd.body} */}
+                                </Text>
                             </>
                         ))}
                     </Stack>
