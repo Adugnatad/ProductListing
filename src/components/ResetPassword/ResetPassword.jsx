@@ -12,7 +12,7 @@ const ResetPassword = () => {
                 </Flex>
                 <Flex direction="column" align="flex-start" w="60%">
                     <Input placeholder='Email' my={5} color="#fff" />
-                    <Input type="number" placeholder='Code' color="#fff" mb={4} />
+                    {/* <Input type="number" placeholder='Code' color="#fff" mb={4} /> */}
                     <Button colorScheme="brand" alignSelf="center" w="100%">Reset</Button>
                     <Link color="#5897f9" href='#' fontSize="14px" alignSelf="center" my={4}>Go back to Login page</Link>
                 </Flex>
