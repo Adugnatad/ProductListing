@@ -62,22 +62,24 @@ const Listing = () => {
 
                             <UnorderedList spacing={4}>
                                 {pr.subtitle?.map((subt, index) =>
-                                (<ListItem key={index} fontSize="14px">
-                                    <TypewriterComponent
-                                        options={{
-                                            strings: subt,
-                                            autoStart: true,
-                                            delay: 30,
-                                            cursor: ""
-                                        }}
-                                    />
+                                (<Flex key={index} fontSize="14px">
+                                    <ListItem>
+                                        <TypewriterComponent
+                                            options={{
+                                                strings: subt,
+                                                autoStart: true,
+                                                delay: 30,
+                                                cursor: ""
+                                            }}
+                                        />
+                                    </ListItem>
                                     <Button variant='link' _hover={{
                                         textDecoration: 'none',
                                     }} > <Icon as={AiOutlineReload} mr={2} ml={4} boxSize={5} /> </Button>
                                     <Button onClick={() => copyText(subt)} variant='link' _hover={{
                                         textDecoration: 'none',
                                     }}>  <Icon as={MdContentCopy} mr={2} boxSize={5} /> </Button>
-                                </ListItem>
+                                </Flex>
 
                                 )
                                 )}
