@@ -25,17 +25,17 @@ function App() {
   }
   return (
     <Box h="100vh">
-      {/* {true && <Header />} */}
+      {showPage !== 0 && showPage !== 2 && showPage !== 7 && <Header />}
       {showPage === 4 && <AIGeneration generation={true} />}
-      {showPage === 0 && <AIGeneration generation={false} />}
+      {showPage === 3 && <AIGeneration generation={false} />}
       {showPage === 1 && <TableListing />}
       {showPage === 7 && <ResetPassword />}
       {showPage === 5 && <Account />}
       {showPage === 6 && <Upgrade />}
-      {showPage === 3 && <Login />}
+      {showPage === 0 && <Login />}
       {showPage === 2 && <Signup />}
       <button onClick={showPages}>Next</button>
-      <Footer />
+      {showPage !== 0 && showPage !== 2 && showPage !== 7 && <Footer />}
     </Box>
   )
 }
