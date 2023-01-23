@@ -8,7 +8,7 @@ const ResetPassword = () => {
                 <Box position="absolute" top="10"><Image src='/assets/logo.png' /></Box>
                 <Flex direction="column" align="center" mt="10">
                     <Text fontSize="18px" color="#F96F02">Reset Password</Text>
-                    <Text fontSize="14px" color="#fff">Please enter your username to reset your password.</Text>
+                    <Text fontSize="14px" color="#fff">Please enter your email to reset your password.</Text>
                 </Flex>
                 <Flex direction="column" align="flex-start" w="60%">
                     <Input placeholder='Email' my={5} color="#fff" />
