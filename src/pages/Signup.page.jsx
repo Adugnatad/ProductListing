@@ -64,11 +64,11 @@ function Signup() {
                                     <Input placeholder='First name' size='md' className='border-[1px] px-2 py-1' name='firstName' onChange={handleChange} value={values.firstName} />
                                     {errors.firstName && touched.firstName ? (<Text fontSize={14} color="#ff0000">{errors.firstName}</Text>) : null}
                                     <Input placeholder='Last name' size='md' className='border-[1px] px-2 py-1' name='lastName' onChange={handleChange} value={values.lastName} />
-                                    {errors.firstName && touched.lastName ? (<Text fontSize={14} color="#ff0000">{errors.lastName}</Text>) : null}
+                                    {errors.lastName && touched.lastName ? (<Text fontSize={14} color="#ff0000">{errors.lastName}</Text>) : null}
                                     <Input placeholder='Email' size='md' className='border-[1px] px-2 py-1' name='email' onChange={handleChange} value={values.email} />
-                                    {errors.firstName && touched.email ? (<Text fontSize={14} color="#ff0000">{errors.email}</Text>) : null}
+                                    {errors.email && touched.email ? (<Text fontSize={14} color="#ff0000">{errors.email}</Text>) : null}
                                     <Input placeholder='Password' type="password" size='md' className='border-[1px] px-2 py-1' name='password' onChange={handleChange} value={values.password} />
-                                    {errors.firstName && touched.password ? (<Text fontSize={14} color="#ff0000">{errors.password}</Text>) : null}
+                                    {errors.password && touched.password ? (<Text fontSize={14} color="#ff0000">{errors.password}</Text>) : null}
                                 </Stack>
 
                             </Box>
