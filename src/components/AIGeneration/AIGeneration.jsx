@@ -19,7 +19,8 @@ import {
     RadioGroup,
     Radio,
     Textarea,
-    Heading
+    Heading,
+    Tooltip
 } from '@chakra-ui/react'
 
 import { ChevronDownIcon, ChevronRightIcon, InfoIcon } from '@chakra-ui/icons';
@@ -65,7 +66,9 @@ const AIGeneration = ({ generation }) => {
                             <FormControl w="100%" mb={3}>
                                 <FormLabel color="#000" fontWeight="bold" display="flex" flexDirection="row" alignItems="center">
                                     Product / Listing Name:
-                                    <InfoIcon mx={1} boxSize={3} alignSelf="center" />
+                                    <Tooltip hasArrow placement='top-start' openDelay={300} label='Product' fontSize='md'>
+                                        <Box><InfoIcon mx={1} boxSize={3} alignSelf="center" /> </Box>
+                                    </Tooltip>
                                 </FormLabel>
                                 <Input variant='filled' placeholder='Fleur de Sel Sea Salt' name='productName' onChange={handleChange} value={values.productName} />
                                 {errors.productName && touched.productName ? (<Text fontSize={14} color="#ff0000">{errors.productName}</Text>) : null}
@@ -73,14 +76,18 @@ const AIGeneration = ({ generation }) => {
                             <FormControl w="100%" mb={3}>
                                 <FormLabel color="#000" fontWeight="bold" display="flex" flexDirection="row" alignItems="center">
                                     Brand: [Optional]
-                                    <InfoIcon mx={1} boxSize={3} alignSelf="center" />
+                                    <Tooltip hasArrow placement='top-start' openDelay={300} label='Brand' fontSize='md'>
+                                        <Box><InfoIcon mx={1} boxSize={3} alignSelf="center" /> </Box>
+                                    </Tooltip>
                                 </FormLabel>
                                 <Input variant='filled' placeholder='Tablissima' name='brand' onChange={handleChange} value={values.brand} />
                             </FormControl>
                             <FormControl w="100%" mb={3}>
                                 <FormLabel color="#000" fontWeight="bold" display="flex" flexDirection="row" alignItems="center">
                                     Product Features:
-                                    <InfoIcon mx={1} boxSize={3} alignSelf="center" />
+                                    <Tooltip hasArrow placement='top-start' openDelay={300} label='Features' fontSize='md'>
+                                        <Box><InfoIcon mx={1} boxSize={3} alignSelf="center" /> </Box>
+                                    </Tooltip>
                                 </FormLabel>
                                 <Textarea variant='filled' placeholder='Sea Salt, Fleur de Sel, Caviar of Salt, Made in France, Trusted by the best chefs' name='productFeatures' onChange={handleChange} value={values.productFeatures} h={20} />
                                 {errors.productFeatures && touched.productFeatures ? (<Text fontSize={14} color="#ff0000">{errors.productFeatures}</Text>) : null}
@@ -88,7 +95,9 @@ const AIGeneration = ({ generation }) => {
                             <FormControl w="100%" mb={3}>
                                 <FormLabel color="#000" fontWeight="bold" display="flex" flexDirection="row" alignItems="center">
                                     SEO Keywords:
-                                    <InfoIcon mx={1} boxSize={3} alignSelf="center" />
+                                    <Tooltip hasArrow placement='top-start' openDelay={300} label='SEO' fontSize='md'>
+                                        <Box><InfoIcon mx={1} boxSize={3} alignSelf="center" /> </Box>
+                                    </Tooltip>
                                 </FormLabel>
                                 <EmailChipInput initialSeos={["Fleur de Sel", "Flaky Sea Salt", "Hand Harvested"]} name="seoKeywords" onChange={handleChange} setFieldValue={setFieldValue} />
                                 {errors.seoKeywords && touched.seoKeywords ? (<Text fontSize={14} color="#ff0000">{errors.seoKeywords}</Text>) : null}
@@ -100,14 +109,18 @@ const AIGeneration = ({ generation }) => {
                                         : <ChevronRightIcon mr={1} boxSize={5} />}
                                     <Text fontWeight="bold"> Advanced [Optional]</Text>
                                 </Flex>
-                                <InfoIcon mx={1} boxSize={3} alignSelf="center" />
+                                <Tooltip hasArrow placement='top-start' openDelay={300} label='Advanced Options' fontSize='md'>
+                                    <Box><InfoIcon mx={1} boxSize={3} alignSelf="center" /> </Box>
+                                </Tooltip>
                             </Flex>
                             {showAdvancedOptions &&
                                 <>
                                     <FormControl w="100%" >
                                         <FormLabel color="#909090" fontWeight="bold" display="flex" flexDirection="row" alignItems="center">
                                             Bullet Points Focus: [Optional]
-                                            <InfoIcon mx={1} boxSize={3} alignSelf="center" />
+                                            <Tooltip hasArrow placement='top-start' openDelay={300} label='Focus' fontSize='md'>
+                                                <Box><InfoIcon mx={1} boxSize={3} alignSelf="center" /> </Box>
+                                            </Tooltip>
                                         </FormLabel>
                                         <Stack spacing={3}>
                                             <Input variant='filled' placeholder='Hand Harvested' name="bulletPoin1" onChange={handleChange} value={values.bulletPoin1} />
@@ -119,8 +132,10 @@ const AIGeneration = ({ generation }) => {
                                     </FormControl>
                                     <FormControl w="100%" my={7}>
                                         <FormLabel color="#909090" fontWeight="bold" display="flex" flexDirection="row" alignItems="center">
-                                            Bullet Points Lengh: [Optional]
-                                            <InfoIcon mx={1} boxSize={3} alignSelf="center" />
+                                            Bullet Points Length: [Optional]
+                                            <Tooltip hasArrow placement='top-start' openDelay={300} label='Length' fontSize='md'>
+                                                <Box><InfoIcon mx={1} boxSize={3} alignSelf="center" /> </Box>
+                                            </Tooltip>
                                         </FormLabel>
                                         <RadioGroup defaultValue={values.bulletPointsLenth}>
                                             <Flex direction={{ sm: "column", md: "row" }}>
@@ -139,7 +154,9 @@ const AIGeneration = ({ generation }) => {
                                     <FormControl w="100%" mb={7}>
                                         <FormLabel color="#909090" fontWeight="bold" display="flex" flexDirection="row" alignItems="center">
                                             Bullet Points Emoji : [Optional]
-                                            <InfoIcon mx={1} boxSize={3} alignSelf="center" />
+                                            <Tooltip hasArrow placement='top-start' openDelay={300} label='Emoji' fontSize='md'>
+                                                <Box><InfoIcon mx={1} boxSize={3} alignSelf="center" /> </Box>
+                                            </Tooltip>
                                         </FormLabel>
                                         <RadioGroup defaultValue={values.bulletPointsEmoji}>
                                             <Flex direction={{ sm: "column", md: "row" }}>
@@ -159,7 +176,9 @@ const AIGeneration = ({ generation }) => {
                                     <FormControl w="100%" mb={7}>
                                         <FormLabel color="#909090" fontWeight="bold" display="flex" flexDirection="row" alignItems="center">
                                             Descriptions Emoji : [Optional]
-                                            <InfoIcon mx={1} boxSize={3} alignSelf="center" />
+                                            <Tooltip hasArrow placement='top-start' openDelay={300} label='Descriptions Emoji' fontSize='md'>
+                                                <Box><InfoIcon mx={1} boxSize={3} alignSelf="center" /> </Box>
+                                            </Tooltip>
                                         </FormLabel>
                                         <RadioGroup defaultValue={values.descriptionEmoji}>
                                             <Flex direction={{ sm: "column", md: "row" }}>
@@ -179,7 +198,7 @@ const AIGeneration = ({ generation }) => {
                                 </>
                             }
 
-                            <Button type='submit' colorScheme='blue' w="fit-content" mb={10}>
+                            <Button type='submit' colorScheme='brand' w="fit-content" mb={10}>
                                 {generation ? "Generate a Listing with AI" :
                                     (<Flex direction="row" align="center">
                                         <Image src='/assets/buttonIcon.svg' alt='' mx={3} />
@@ -189,18 +208,14 @@ const AIGeneration = ({ generation }) => {
                                     )}
                             </Button>
                             <Stack spacing={1} display="flex" alignItems="flex-start">
-                                <Button variant='link' _hover={{
-                                    textDecoration: 'none',
-                                }}>
-                                    <Icon as={AiOutlineReload} mr={2} />
-                                    <Text>Generate New content</Text>
-                                </Button>
-                                <Button variant='link' _hover={{
-                                    textDecoration: 'none',
-                                }}>
-                                    <Icon as={MdContentCopy} mr={2} />
-                                    <Text>Copy and Paste</Text>
-                                </Button>
+                                <Flex direction="row" align="center">
+                                    <Icon as={AiOutlineReload} color="#7182A4" mr={2} />
+                                    <Text color="#7182A4">Generate New content</Text>
+                                </Flex>
+                                <Flex direction="row" align="center">
+                                    <Icon as={MdContentCopy} color="#7182A4" mr={2} />
+                                    <Text color="#7182A4">Copy and Paste</Text>
+                                </Flex>
                             </Stack>
                         </Form>
 

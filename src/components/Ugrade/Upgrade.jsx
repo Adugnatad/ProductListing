@@ -5,8 +5,8 @@ import React from 'react'
 
 const Upgrade = () => {
     return (
-        <Flex direction="column" align="flex-start" m={7}>
-            <Heading ml={5}>Upgrade your Account</Heading>
+        <Flex direction="column" align="flex-start" m={7} my="60px">
+            <Heading ml="70px" mb="30px">Upgrade your Account</Heading>
             <Flex direction="column" align="center" w="100%" py={3} px={5} my={10} alignSelf="center">
                 <FormControl display='flex' alignItems='center' w="fit-content" px={2} py={2} bgColor="#fff" borderRadius={5}>
                     <FormLabel htmlFor='email-alerts' mb='0'>

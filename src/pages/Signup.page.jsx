@@ -8,13 +8,16 @@ import {
     Link,
     Button,
     Center,
-    Heading
+    Heading,
+    Spinner,
+    Flex
 } from '@chakra-ui/react'
 import { FcGoogle } from 'react-icons/fc';
 import LandingPage from '../components/LandingPage/LandingPage';
+import { useState } from 'react';
 
 function Signup() {
-
+    const [Overlay, setOverlay] = useState(false);
     const SignupSchema = Yup.object().shape({
         firstName: Yup.string().required('Required'),
         lastName: Yup.string().required('required'),
@@ -24,7 +27,16 @@ function Signup() {
     return (
 
         <Box display="flex" flexDirection={{ sm: "column-reverse", md: "row" }} alignItems={{ sm: "center", md: "normal" }} justifyContent={{ sm: "start", md: "between" }} w="full" h="100vh">
-            <Box w={{ sm: "90%", md: "30%" }} display="flex" flexDirection="column" alignItems="center" justifyContent="center">
+            <Box w={{ sm: "90%", md: "30%" }} display="flex" flexDirection="column" alignItems="center" justifyContent="center" position="relative">
+                <Flex display={Overlay ? "flex" : "none"} alignItems="center" justifyContent="center" w="100%" h="100%" bgColor="#5A05052F" position="absolute" top="0" zIndex={2}>
+                    <Spinner
+                        thickness='4px'
+                        speed='0.65s'
+                        emptyColor='gray.200'
+                        color='#5A0505'
+                        size='xl'
+                    />
+                </Flex>
                 <Box w="90%" display="flex" flexDirection="column" mx={10}>
                     <Heading mb={2}>Sign up</Heading>
                     <Box display='flex' flexDirection="row">
@@ -41,10 +53,10 @@ function Signup() {
                     }}
                     validationSchema={SignupSchema}
                     onSubmit={(values) => {
+                        setOverlay(true)
                         alert(JSON.stringify(values, null, 2))
                     }}>
                     {({ values, errors, touched, handleChange, handleSubmit }) => (
-
                         <Box my={8} display="flex" flexDirection="column" alignItems="start" w="90%">
                             <Box w="100%">
 

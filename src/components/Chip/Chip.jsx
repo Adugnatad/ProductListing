@@ -73,6 +73,12 @@ export const EmailChipInput = ({ initialSeos, setFieldValue }) => {
     };
 
     const handleKeyDown = (e) => {
+        if (["Backspace", "Delete"]) {
+            e.preventDefault();
+            const newSeos = [...seos];
+            newSeos.pop();
+            setSeos(newSeos);
+        }
         if (["Enter", "Tab", ","].includes(e.key)) {
             e.preventDefault();
 

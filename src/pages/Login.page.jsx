@@ -13,23 +13,36 @@ import {
     Link,
     Button,
     Center,
-    Heading
+    Heading,
+    Flex,
+    Spinner
 } from '@chakra-ui/react'
 import { Formik } from 'formik';
 import { FcGoogle } from 'react-icons/fc';
 import LandingPage from '../components/LandingPage/LandingPage';
 import * as Yup from 'yup';
+import { useState } from 'react';
 
 
 
 const Login = () => {
+    const [Overlay, setOverlay] = useState(false);
     const LoginSchema = Yup.object().shape({
         email: Yup.string().email('Invalid email').required('Required'),
         password: Yup.string().required("required"),
     });
     return (
         <Box display="flex" flexDirection={{ sm: "column-reverse", md: "row" }} alignItems={{ sm: "center", md: "normal" }} justifyContent={{ sm: "start", md: "between" }} w="full" h="100vh">
-            <Box w={{ sm: "90%", md: "30%" }} display="flex" flexDirection="column" alignItems="center" justifyContent="center" my={5}>
+            <Box width={{ sm: "90%", md: "30%" }} display="flex" flexDirection="column" alignItems="center" justifyContent="center" py={5} position="relative">
+                <Flex display={Overlay ? "flex" : "none"} alignItems="center" justifyContent="center" w="100%" h="100%" bgColor="#5A05052F" position="absolute" top="0" zIndex={2}>
+                    <Spinner
+                        thickness='4px'
+                        speed='0.65s'
+                        emptyColor='gray.200'
+                        color='#5A0505'
+                        size='xl'
+                    />
+                </Flex>
                 <Box display="flex" flexDirection="column" mx={10} w="90%">
                     <Box display="flex" flexDirection="row" alignItems="center" justifyContent="space-between" w="100%" mb={3} className='self-start'>
                         <Heading mb={3}>Sign in</Heading>
@@ -61,9 +74,11 @@ const Login = () => {
                         }}
                         validationSchema={LoginSchema}
                         onSubmit={(values) => {
+                            setOverlay(true)
                             alert(JSON.stringify(values, null, 2))
                         }}>
                         {({ values, errors, touched, handleChange, handleSubmit }) => (
+
                             <Box w="100%" spacing={3}>
 
                                 <FormControl w="100%">

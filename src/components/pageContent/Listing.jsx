@@ -8,7 +8,7 @@ import { FcDocument } from "react-icons/fc";
 import { useState } from 'react';
 
 const Listing = () => {
-    const [showPaywall, setShowPaywall] = useState(true);
+    const [showPaywall, setShowPaywall] = useState(false);
     const product = [
         {
             title: "Fleur de Sel - Premium Sea salt from Guerande France - Flaky Sea Salt from the Celtic Sea - Salt Cork box - 3.5 Oz (100g)",
@@ -109,10 +109,10 @@ const Listing = () => {
                     </Flex>
                 </Flex>
                 <Stack direction='row' justifyContent="center" spacing={4} filter={showPaywall && "blur(2px)"} userSelect={showPaywall && "none"} pointerEvents={showPaywall && "none"}>
-                    <Button leftIcon={<AiFillFilePdf />} colorScheme='blue' variant='solid'>
+                    <Button leftIcon={<AiFillFilePdf />} colorScheme='brand' variant='solid'>
                         Export PDF
                     </Button>
-                    <Button leftIcon={<FcDocument />} colorScheme='blue' variant='solid'>
+                    <Button leftIcon={<FcDocument />} colorScheme='brand' variant='solid'>
                         Export Word
                     </Button>
                 </Stack>

@@ -1,5 +1,7 @@
 import { Stack, Text } from '@chakra-ui/react'
 import React from 'react'
+import { useEffect } from 'react';
+import TypewriterComponent from 'typewriter-effect';
 
 const Generation = () => {
     return (

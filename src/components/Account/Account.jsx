@@ -11,8 +11,8 @@ const Account = () => {
         email: Yup.string().email('Invalid email').required('Required'),
     });
     return (
-        <Box display="flex" flexDirection="column" alignItems="center" my={10}>
-            <Heading alignSelf="flex-start" ml={10}>Your Account</Heading>
+        <Box display="flex" flexDirection="column" alignItems="center" my="60px">
+            <Heading alignSelf="flex-start" ml="80px" mb="30px">Your Account</Heading>
             <Formik
                 initialValues={{
                     firstName: '',
@@ -48,7 +48,7 @@ const Account = () => {
                         <Box w="100%">
                             <hr className='mt-5' />
                         </Box>
-                        <Button onClick={handleSubmit} bgGradient='linear(to-r, pink.500, blue.600)' color="#fff" alignSelf={{ md: "flex-start" }}>Save</Button>
+                        <Button onClick={handleSubmit} colorScheme='brand' color="#fff" alignSelf={{ md: "flex-start" }}>Save</Button>
                     </Stack>
                 )}
             </Formik>
@@ -56,7 +56,7 @@ const Account = () => {
             <Stack display="flex" flexDirection="column" align="center" w={{ sm: "90%", md: "65%" }} mt={20}>
                 <Text fontSize="25px" fontWeight="bold">Billing</Text>
                 <Text fontSize="18px" color="#586A7E" fontWeight="semibold">Available credits</Text>
-                <Flex flexDirection={{ sm: "column", md: "row" }} align="center" w="100%">
+                <Flex flexDirection={{ sm: "column", md: "row" }} align="center" justify="center" w="100%">
                     <Flex direction="column" justify="center" align={{ sm: "center", md: "normal" }} borderWidth="1px" borderRadius="7px" p={7} mr={{ md: 7 }} mb={{ sm: 4, md: 0 }} w={{ sm: "100%", md: "33%" }}>
                         <Flex direction="row" align="center">
                             <Text fontSize="14px" fontWeight="bold" color="#586A7E" mr={2}>Total credits</Text>
@@ -94,7 +94,7 @@ const Account = () => {
                         <Text color="#5C82F9" fontWeight="bold" fontSize="18px">Get 2 months free ✌</Text>
                         <Text color="#586A7E">Pay annually to get 2 months free.</Text>
                     </Flex>
-                    <Button bgGradient='linear(to-r, pink.500, blue.600)' color="#fff" height={30}>View details</Button>
+                    <Button colorScheme='brand' color="#fff" height={30}>View details</Button>
                 </Flex>
                 <Flex flexDirection={{ sm: "column", md: "row" }} justify={{ md: "space-between" }} align="center" borderWidth="1px" borderRadius="7px" w="100%" px={5} py={6} my={3}>
                     <Flex direction="column" mb={4} textAlign={{ sm: "center", md: "start" }}>

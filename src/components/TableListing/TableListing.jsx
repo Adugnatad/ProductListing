@@ -4,6 +4,7 @@ import { AiOutlineArrowDown, AiOutlineArrowUp } from "react-icons/ai"
 import { FiEdit2, FiSearch } from "react-icons/fi"
 import { Icon } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
+import Footer from '../Footer/Footer'
 
 const TableListing = () => {
 
@@ -153,16 +154,16 @@ const TableListing = () => {
         }
     }
     return (
-        <TableContainer mx={10}>
-            <Flex direction={{ sm: "column", md: "row" }} justifyContent={{ md: "space-between" }} align="center" px="30px" py="10px">
+        <TableContainer mx={{ md: 10 }} h="100%">
+            <Flex direction={{ sm: "column", md: "row" }} justifyContent={{ md: "space-between" }} align="center" px="30px" my={{ sm: "40px", md: "60px" }}>
                 <Heading mb={3}>Listings</Heading>
-                <Stack spacing={4}>
+                <Stack spacing={4} w={{ sm: "100%", md: "fit-content" }}>
                     <InputGroup>
                         <InputLeftElement
                             pointerEvents='none'
                             children={<FiSearch color='gray.300' />}
                         />
-                        <Input type="text" w="200px" placeHolder="Search" onChange={(e) => setSearchText(e.target.value)} />
+                        <Input type="text" w={{ sm: "100%", md: "300px" }} placeholder="Search" onChange={(e) => setSearchText(e.target.value)} />
                     </InputGroup>
                 </Stack>
             </Flex>
@@ -170,17 +171,17 @@ const TableListing = () => {
                 <Thead bgColor="#F5F9FB">
                     <Tr>
                         <Th w="10px"><Checkbox onChange={() => selectTable()} /></Th>
-                        <Th cursor="pointer" onClick={SortByName}>
+                        <Th cursor="pointer" _hover={{ color: '#F96F02' }} onClick={SortByName}>
                             Name
                             {sortName === 2 && <Icon as={AiOutlineArrowDown} ml={3} />}
                             {sortName === 1 && <Icon as={AiOutlineArrowUp} ml={3} />}
                         </Th>
-                        <Th cursor="pointer" onClick={SortByBrand}>
+                        <Th cursor="pointer" _hover={{ color: '#F96F02' }} onClick={SortByBrand}>
                             Brand
                             {sortBrand === 2 && <Icon as={AiOutlineArrowDown} ml={3} />}
                             {sortBrand === 1 && <Icon as={AiOutlineArrowUp} ml={3} />}
                         </Th>
-                        <Th cursor="pointer" onClick={SortById}>
+                        <Th cursor="pointer" _hover={{ color: '#F96F02' }} onClick={SortById}>
                             ID
                             {sortIds === 2 && <Icon as={AiOutlineArrowDown} ml={3} />}
                             {sortIds === 1 && <Icon as={AiOutlineArrowUp} ml={3} />}
@@ -203,8 +204,8 @@ const TableListing = () => {
                     ))}
                 </Tbody>
             </Table>
-            <Box display="flex" flexDirection="row" alignContent="center" justifyContent="space-between" px="20px" py="10px" w="100%">
-                <Text fontSize={15} color="">Showing {indexOfFirstRow} to {indexOfLastRow} of {tableData.length} results</Text>
+            <Box display="flex" flexDirection={{ sm: "column", md: "row" }} alignItems="center" justifyContent="space-between" px="20px" py="10px" w="100%">
+                <Text fontSize={15} color="" my={3}>Showing {indexOfFirstRow} to {indexOfLastRow} of {tableData.length} results</Text>
                 <Flex direction="row" align="center">
                     <Button variant='outline' mr={3} onClick={() => paginate("back")}>Previous</Button>
                     <Button variant='outline' onClick={() => paginate("forward")}>Next</Button>
