@@ -128,11 +128,11 @@ const Listing = () => {
                         }}>UPGRADE NOW</Button>
                     </Flex>
                 </Flex>
-                <Stack direction='row' justifyContent="center" spacing={4} filter={showPaywall && "blur(2px)"} userSelect={showPaywall && "none"} pointerEvents={showPaywall && "none"}>
-                    <Button leftIcon={<AiFillFilePdf />} colorScheme='brand' variant='solid'>
+                <Stack direction={{ sm: 'column', md: 'row' }} justifyContent="center" alignItems={{ sm: 'center', md: 'normal' }} spacing={4} filter={showPaywall && "blur(2px)"} userSelect={showPaywall && "none"} pointerEvents={showPaywall && "none"}>
+                    <Button leftIcon={<AiFillFilePdf />} colorScheme='brand' variant='solid' w="fit-content">
                         Export PDF
                     </Button>
-                    <Button leftIcon={<FcDocument />} colorScheme='brand' variant='solid'>
+                    <Button leftIcon={<FcDocument />} colorScheme='brand' variant='solid' w="fit-content">
                         Export Word
                     </Button>
                 </Stack>

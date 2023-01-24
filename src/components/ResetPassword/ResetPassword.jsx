@@ -16,8 +16,8 @@ const ResetPassword = () => {
                 <Flex direction="column" align="center" mt="10">
                     <Text fontSize="18px" color="#F96F02">Reset Password</Text>
                     {!showCode ?
-                        <Text fontSize="14px" color="#fff">Please enter your email to reset your password.</Text>
-                        : <Text fontSize="14px" color="#fff">Please enter your the code sent to your email.</Text>
+                        <Text fontSize="14px" color="#fff" textAlign="center">Please enter your email to reset your password.</Text>
+                        : <Text fontSize="14px" color="#fff" textAlign="center">Please enter your the code sent to your email.</Text>
                     }
                 </Flex>
                 <Formik
