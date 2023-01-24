@@ -11,7 +11,7 @@ const ResetPassword = () => {
     });
     return (
         <Flex direction="column" align="center" justify="center" width="100%" height="100vh" bgColor="#fff">
-            <Flex direction="column" align="center" justify="center" borderWidth="1px" w="40%" h="70%" bgColor="#4C0505" position="relative" borderRadius="5px">
+            <Flex direction="column" align="center" justify="center" borderWidth="1px" w={{ sm: "90%", md: "40%" }} h="70%" bgColor="#4C0505" position="relative" borderRadius="5px">
                 <Box position="absolute" top="10"><Image src='/assets/logo.png' /></Box>
                 <Flex direction="column" align="center" mt="10">
                     <Text fontSize="18px" color="#F96F02">Reset Password</Text>
