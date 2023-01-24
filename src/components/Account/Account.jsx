@@ -57,7 +57,7 @@ const Account = () => {
                 <Text fontSize="25px" fontWeight="bold">Billing</Text>
                 <Text fontSize="18px" color="#586A7E" fontWeight="semibold">Available credits</Text>
                 <Flex flexDirection={{ sm: "column", md: "row" }} align="center" justify="center" w="100%">
-                    <Flex direction="column" justify="center" align={{ sm: "center", md: "normal" }} borderWidth="1px" borderRadius="7px" p={7} mr={{ md: 7 }} mb={{ sm: 4, md: 0 }} w={{ sm: "100%", md: "33%" }}>
+                    <Flex direction="column" justify="center" align={{ sm: "center", md: "normal" }} borderWidth="1px" borderRadius="7px" p={7} mr={{ md: 7 }} mb={{ sm: 4, md: 0 }} w="100%">
                         <Flex direction="row" align="center">
                             <Text fontSize="14px" fontWeight="bold" color="#586A7E" mr={2}>Total credits</Text>
                             <InfoOutlineIcon color="#ddd" />
@@ -65,7 +65,7 @@ const Account = () => {
                         <Text fontSize="28px" fontWeight="bold">208,000</Text>
                         <Text fontSize="12px" color="#586A7E">0% of plan credits used</Text>
                     </Flex>
-                    <Flex direction="column" justify="center" align={{ sm: "center", md: "normal" }} borderWidth="1px" borderRadius="7px" p={7} mr={{ md: 7 }} mb={{ sm: 4, md: 0 }} w={{ sm: "100%", md: "33%" }}>
+                    <Flex direction="column" justify="center" align={{ sm: "center", md: "normal" }} borderWidth="1px" borderRadius="7px" p={7} mb={{ sm: 4, md: 0 }} w="100%">
                         <Flex direction="row" align="center">
                             <Text fontSize="14px" fontWeight="bold" color="#586A7E" mr={2}>Plan credits</Text>
                             <InfoOutlineIcon color="#ddd" />
