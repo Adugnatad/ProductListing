@@ -72,7 +72,7 @@ const Listing = () => {
 
                             {pr.subtitle?.map((subt, index) =>
                             (<Flex key={index} fontSize="14px" align="flex-start">
-                                <Box borderWidth="1px" p={2} px={4} mb={4}>
+                                <Box borderWidth="1px" p={2} px={4} mb={4} w="100%">
                                     <UnorderedList>
                                         <ListItem >
                                             <TypewriterComponent
@@ -104,12 +104,12 @@ const Listing = () => {
                 <Flex position="relative" direction='column' align="flex-start" justifyContent="center">
                     <Text fontSize="22px" fontWeight="bold" mb={5}>Product Description</Text>
                     <Stack direction="row" ml={2} alignItems="flex-start" w={{ sm: "100%", md: "90%" }} filter={showPaywall && "blur(5px)"} userSelect={showPaywall && "none"} pointerEvents={showPaywall && "none"} position="relative">
-                        <Box borderWidth="1px" p={2} px={2} >
+                        <Box borderWidth="1px" p={2} px={2} w="100%">
                             {productDescription.map((pd, index) => (
                                 <Box mb={2}>
                                     <Flex direction="row" align="center">
                                         <Text fontWeight="bold" fontSize="17px">
-                                            <TypewriterComponent
+                                            {!showPaywall ? <TypewriterComponent
                                                 options={{
                                                     strings: pd.title,
                                                     autoStart: true,
@@ -117,17 +117,18 @@ const Listing = () => {
                                                     cursor: ""
                                                 }}
                                             />
+                                                : pd.title}
                                         </Text>
                                     </Flex>
                                     <Text fontWeight="">
-                                        <TypewriterComponent
+                                        {!showPaywall ? <TypewriterComponent
                                             options={{
                                                 strings: pd.body,
                                                 autoStart: true,
                                                 delay: 30,
                                                 cursor: ""
                                             }}
-                                        />
+                                        /> : pd.body}
                                     </Text>
                                 </Box>
                             ))}
@@ -143,7 +144,7 @@ const Listing = () => {
                         </Flex>
                     </Stack>
 
-                    <Flex display={!showPaywall ? "none" : "flex"} direction="column" align="center" w={{ sm: "250px", md: "380px" }} py={3} px={2} backgroundColor="#F4A023E0" color="#fff" position="absolute" >
+                    <Flex display={!showPaywall ? "none" : "flex"} direction="column" align="center" alignSelf="center" w={{ sm: "250px", md: "380px" }} py={3} px={2} backgroundColor="#F4A023E0" color="#fff" position="absolute" >
                         <Text fontWeight="bold">Generate full Product Listings Includes</Text>
                         <UnorderedList>
                             <ListItem>Includes Description</ListItem>
