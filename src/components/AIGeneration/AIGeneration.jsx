@@ -23,7 +23,7 @@ import {
     Tooltip
 } from '@chakra-ui/react'
 
-import { ChevronDownIcon, ChevronRightIcon, InfoIcon } from '@chakra-ui/icons';
+import { ChevronDownIcon, ChevronRightIcon, InfoIcon, SettingsIcon } from '@chakra-ui/icons';
 import { Icon } from '@chakra-ui/react'
 import { AiOutlineReload } from "react-icons/ai"
 import { MdContentCopy } from "react-icons/md"
@@ -40,8 +40,11 @@ const AIGeneration = ({ generation }) => {
     });
     return (
         <Flex w="100%" direction={{ sm: "column", md: "row" }}>
-            <Box w={{ sm: "90%", md: "35%" }} my="60px" px={10} mx={{ sm: "auto", md: 0 }}>
-                <Heading mb="30px">AI Generation</Heading>
+            <Box w={{ sm: "90%", md: "35%" }} my="60px" px={10} mx={{ sm: "auto", md: 0 }} borderRightWidth="1px">
+                <Flex direction="row" align="center" mb="30px">
+                    <Image src='/assets/FiSettings.svg' mr={2} />
+                    <Heading>AI Generation</Heading>
+                </Flex>
                 <Formik
                     initialValues={{
                         productName: '',
@@ -222,7 +225,6 @@ const AIGeneration = ({ generation }) => {
                     )}
                 </Formik>
             </Box>
-            <Box w="50px" mt="60px" bgGradient='linear(to-r, #fff, #fafafa, #ddd)' />
             <PageContent generation={generation} />
         </Flex >
     )
