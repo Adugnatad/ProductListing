@@ -46,7 +46,7 @@ const Listing = () => {
     }
     return (
         <>
-            <Flex direction="row" align="center" mt="60px" mb="40px">
+            <Flex direction="row" align="center" mt="60px" mb="25px">
                 <Image src='/assets/humburger.svg' mr={2} />
                 <Heading>Your Product Listing</Heading>
             </Flex>
