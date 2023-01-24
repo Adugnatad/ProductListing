@@ -54,9 +54,11 @@ const Account = () => {
             </Formik>
 
             <Stack display="flex" flexDirection="column" align="center" w={{ sm: "90%", md: "65%" }} mt={20}>
-                <Text fontSize="25px" fontWeight="bold">Billing</Text>
-                <Text fontSize="18px" color="#586A7E" fontWeight="semibold">Available credits</Text>
-                <Flex flexDirection={{ sm: "column", md: "row" }} align="center" justify="center" w="100%">
+                <Stack textAlign="center" mb={4}>
+                    <Text fontSize="25px" fontWeight="bold" >Billing</Text>
+                    <Text fontSize="18px" color="#586A7E" fontWeight="semibold">Available credits</Text>
+                </Stack>
+                <Flex flexDirection={{ sm: "column", md: "row" }} align="center" justify="center" w="100%" >
                     <Flex direction="column" justify="center" align={{ sm: "center", md: "normal" }} borderWidth="1px" borderRadius="7px" p={7} mr={{ md: 7 }} mb={{ sm: 4, md: 0 }} w="100%">
                         <Flex direction="row" align="center">
                             <Text fontSize="14px" fontWeight="bold" color="#586A7E" mr={2}>Total credits</Text>
