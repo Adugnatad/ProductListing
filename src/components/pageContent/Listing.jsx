@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Heading, ListItem, Stack, Text, UnorderedList } from '@chakra-ui/react'
+import { Box, Button, Flex, Heading, Image, ListItem, Stack, Text, UnorderedList } from '@chakra-ui/react'
 import { Icon } from '@chakra-ui/react'
 import { AiOutlineReload } from "react-icons/ai"
 import { MdContentCopy } from "react-icons/md"
@@ -46,74 +46,101 @@ const Listing = () => {
     }
     return (
         <>
-            <Heading mt="60px" mb="40px">Your Product Listing</Heading>
+            <Flex direction="row" align="center" mt="60px" mb="40px">
+                <Image src='/assets/humburger.svg' mr={2} />
+                <Heading>Your Product Listing</Heading>
+            </Flex>
             <Stack spacing={10} pl={7}>
                 <Stack spacing={3} w="90%">
+                    <Text fontSize="22px" fontWeight="bold">Product Title</Text>
                     {product.map((pr, index) => (
                         <Box key={index}>
-                            <Text fontSize="30px" fontWeight="semibold" mb={5}>{pr.title}
-                                <Button variant='link' _hover={{
-                                    textDecoration: 'none',
-                                }} > <Icon as={AiOutlineReload} mr={2} ml={4} boxSize={6} /> </Button>
-                                <Button onClick={() => copyText(pr.title)} variant='link' _hover={{
-                                    textDecoration: 'none',
-                                }}>  <Icon as={MdContentCopy} mr={2} boxSize={6} /> </Button>
-                            </Text>
+                            <Flex direction="row" align="flex-start" >
+                                <Text fontSize="30px" fontWeight="semibold" mb={5} borderWidth="1px" p="2">
+                                    {pr.title}
+                                </Text>
+                                <Flex direction="column" align="center" justify="center">
+                                    <Button variant='link' _hover={{
+                                        textDecoration: 'none',
+                                    }} > <Icon as={AiOutlineReload} mb={2} boxSize={6} /> </Button>
+                                    <Button onClick={() => copyText(pr.title)} variant='link' _hover={{
+                                        textDecoration: 'none',
+                                    }}>  <Icon as={MdContentCopy} boxSize={6} /> </Button>
+                                </Flex>
+                            </Flex>
+                            <Text fontSize="22px" fontWeight="bold" mb={5}>Bullet Points</Text>
 
-                            <UnorderedList spacing={4}>
-                                {pr.subtitle?.map((subt, index) =>
-                                (<Flex key={index} fontSize="14px">
-                                    <ListItem>
+                            {pr.subtitle?.map((subt, index) =>
+                            (<Flex key={index} fontSize="14px" align="flex-start">
+                                <Box borderWidth="1px" p={2} px={4} mb={4}>
+                                    <UnorderedList>
+                                        <ListItem >
+                                            <TypewriterComponent
+                                                options={{
+                                                    strings: subt,
+                                                    autoStart: true,
+                                                    delay: 30,
+                                                    cursor: ""
+                                                }}
+                                            />
+                                        </ListItem>
+                                    </UnorderedList>
+                                </Box>
+                                <Flex direction="column" align="center" justify="center">
+                                    <Button variant='link' _hover={{
+                                        textDecoration: 'none',
+                                    }} > <Icon as={AiOutlineReload} mb={2} boxSize={5} /> </Button>
+                                    <Button onClick={() => copyText(subt)} variant='link' _hover={{
+                                        textDecoration: 'none',
+                                    }}>  <Icon as={MdContentCopy} boxSize={5} /> </Button>
+                                </Flex>
+                            </Flex>
+
+                            )
+                            )}
+                        </Box>
+                    ))}
+                </Stack>
+                <Flex position="relative" direction='column' align="flex-start" justifyContent="center">
+                    <Text fontSize="22px" fontWeight="bold" mb={5}>Product Description</Text>
+                    <Stack direction="row" ml={2} alignItems="flex-start" w={{ sm: "100%", md: "90%" }} filter={showPaywall && "blur(5px)"} userSelect={showPaywall && "none"} pointerEvents={showPaywall && "none"} position="relative">
+                        <Box borderWidth="1px" p={2} px={2} >
+                            {productDescription.map((pd, index) => (
+                                <Box mb={2}>
+                                    <Flex direction="row" align="center">
+                                        <Text fontWeight="bold" fontSize="17px">
+                                            <TypewriterComponent
+                                                options={{
+                                                    strings: pd.title,
+                                                    autoStart: true,
+                                                    delay: 30,
+                                                    cursor: ""
+                                                }}
+                                            />
+                                        </Text>
+                                    </Flex>
+                                    <Text fontWeight="">
                                         <TypewriterComponent
                                             options={{
-                                                strings: subt,
+                                                strings: pd.body,
                                                 autoStart: true,
                                                 delay: 30,
                                                 cursor: ""
                                             }}
                                         />
-                                    </ListItem>
-                                    <Button variant='link' _hover={{
-                                        textDecoration: 'none',
-                                    }} > <Icon as={AiOutlineReload} mr={2} ml={4} boxSize={5} /> </Button>
-                                    <Button onClick={() => copyText(subt)} variant='link' _hover={{
-                                        textDecoration: 'none',
-                                    }}>  <Icon as={MdContentCopy} mr={2} boxSize={5} /> </Button>
-                                </Flex>
+                                    </Text>
+                                </Box>
+                            ))}
 
-                                )
-                                )}
-                            </UnorderedList>
                         </Box>
-                    ))}
-                </Stack>
-                <Flex position="relative" direction='column' align="center" justifyContent="center">
-                    <Stack spacing={3} ml={7} w={{ sm: "100%", md: "90%" }} filter={showPaywall && "blur(5px)"} userSelect={showPaywall && "none"} pointerEvents={showPaywall && "none"} position="relative">
-                        <Text fontSize='32px' fontWeight="bold">Product Description</Text>
-                        {productDescription.map((pd, index) => (
-                            <>
-                                <Flex direction="row" align="center">
-                                    <Text fontWeight="bold" fontSize="17px">{pd.title}</Text>
-                                    <Button variant='link' _hover={{
-                                        textDecoration: 'none',
-                                    }} > <Icon as={AiOutlineReload} mr={2} ml={4} boxSize={5} /> </Button>
-                                    <Button onClick={() => copyText(pd.body)} variant='link' _hover={{
-                                        textDecoration: 'none',
-                                    }}>  <Icon as={MdContentCopy} mr={2} boxSize={5} /> </Button>
-                                </Flex>
-                                <Text fontWeight="">
-                                    <TypewriterComponent
-                                        options={{
-                                            strings: pd.body,
-                                            autoStart: true,
-                                            delay: 30,
-                                            cursor: ""
-                                        }}
-                                    />
-                                    {/* {pd.body} */}
-                                </Text>
-                            </>
-                        ))}
+                        <Flex direction="column" align="center" justify="center">
+                            <Button variant='link' _hover={{
+                                textDecoration: 'none',
+                            }} > <Icon as={AiOutlineReload} mb={2} boxSize={5} /> </Button>
+                            <Button variant='link' _hover={{
+                                textDecoration: 'none',
+                            }}>  <Icon as={MdContentCopy} boxSize={5} /> </Button>
+                        </Flex>
                     </Stack>
 
                     <Flex display={!showPaywall ? "none" : "flex"} direction="column" align="center" w={{ sm: "250px", md: "380px" }} py={3} px={2} backgroundColor="#F4A023E0" color="#fff" position="absolute" >
