@@ -56,8 +56,15 @@ const Listing = () => {
                     {product.map((pr, index) => (
                         <Box key={index}>
                             <Flex direction="row" align="flex-start" >
-                                <Text fontSize="30px" fontWeight="semibold" mb={5} borderWidth="1px" p="2">
-                                    {pr.title}
+                                <Text fontSize="30px" fontWeight="semibold" mb={5} borderWidth="1px" p="2" w="100%">
+                                    <TypewriterComponent
+                                        options={{
+                                            strings: pr.title,
+                                            autoStart: true,
+                                            delay: 30,
+                                            cursor: ""
+                                        }}
+                                    />
                                 </Text>
                                 <Flex direction="column" align="center" justify="center">
                                     <Button variant='link' _hover={{
