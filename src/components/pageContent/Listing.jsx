@@ -45,13 +45,13 @@ const Listing = () => {
         });
     }
     return (
-        <>
+        <Box w="100%">
             <Flex direction="row" align="center" mt="60px" mb="25px">
                 <Image src='/assets/humburger.svg' mr={2} />
                 <Heading>Your Product Listing</Heading>
             </Flex>
             <Stack spacing={10} pl={7}>
-                <Stack spacing={3} w="90%">
+                <Stack spacing={3} w={{ sm: "100%", md: "90%" }}>
                     <Text fontSize="22px" fontWeight="bold">Product Title</Text>
                     {product.map((pr, index) => (
                         <Box key={index}>
@@ -172,7 +172,7 @@ const Listing = () => {
                     </Button>
                 </Stack>
             </Stack>
-        </>
+        </Box>
     )
 }
 

@@ -7,7 +7,7 @@ const PageContent = ({ generation }) => {
 
 
     return (
-        <Box w={{ sm: "90%", md: "60%" }} px={10} mb="50px">
+        <Box w={{ sm: "100%", md: "60%" }} px={10} mb="50px">
             {!generation ? <Generation /> : <Listing />}
 
         </Box >
