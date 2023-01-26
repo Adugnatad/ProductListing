@@ -4,21 +4,9 @@ import {
     Tag,
     TagLabel,
     TagCloseButton,
-    Wrap,
-    Container,
-    Textarea,
     Box,
 } from "@chakra-ui/react";
 import { useEffect, useRef, useState } from "react";
-
-function resizable(el, factor) {
-    var int = Number(factor) || 7.7;
-    function resize() { el.style.width = ((el.value.length + 1) * int) + 'px' }
-    var e = 'keyup,keypress,focus,blur,change'.split(',');
-    for (var i in e) el.addEventListener(e[i], resize, false);
-    resize();
-}
-
 
 
 
@@ -37,7 +25,7 @@ export const Chip = ({ seo, onCloseClick }) => {
 }
 
 
-export const EmailChipInput = ({ initialSeos, setFieldValue }) => {
+export const EmailChipInput = ({ initialSeos, setFieldValue, disabled }) => {
     const [inputValue, setInputValue] = useState("");
     const [seos, setSeos] = useState(initialSeos);
 
@@ -95,7 +83,9 @@ export const EmailChipInput = ({ initialSeos, setFieldValue }) => {
     };
 
     const handleCloseClick = (seo) => {
-        removeSeos(seo);
+        if (!disabled) {
+            removeSeos(seo);
+        }
     };
 
     const [width, setWidth] = useState(1);
@@ -109,6 +99,7 @@ export const EmailChipInput = ({ initialSeos, setFieldValue }) => {
                             <Chip seo={seo} key={seo} onCloseClick={handleCloseClick} />
                         ))}
                         <Input
+                            disabled={disabled}
                             py={2}
                             ref={ref}
                             variant='unstyled'

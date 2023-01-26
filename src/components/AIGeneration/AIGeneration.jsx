@@ -110,7 +110,7 @@ const AIGeneration = ({ generation }) => {
                                         <Box><InfoIcon mx={1} boxSize={3} alignSelf="center" /> </Box>
                                     </Tooltip>
                                 </FormLabel>
-                                <EmailChipInput initialSeos={["Fleur de Sel", "Flaky Sea Salt", "Hand Harvested"]} name="seoKeywords" onChange={handleChange} setFieldValue={setFieldValue} />
+                                <EmailChipInput initialSeos={["Fleur de Sel", "Flaky Sea Salt", "Hand Harvested"]} name="seoKeywords" onChange={handleChange} setFieldValue={setFieldValue} disabled={false} />
                                 {errors.seoKeywords && touched.seoKeywords ? (<Text fontSize={14} color="#ff0000">{errors.seoKeywords}</Text>) : null}
                             </FormControl>
                             <Flex direction="row" align="center" my={7} cursor="pointer" onClick={() => { setShowAdvancedOptions(!showAdvancedOptions) }}>
