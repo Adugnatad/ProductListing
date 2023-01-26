@@ -22,7 +22,7 @@ import { ChevronDownIcon, ChevronRightIcon, InfoIcon, SettingsIcon } from '@chak
 import { Icon } from '@chakra-ui/react'
 import { AiOutlineReload } from "react-icons/ai"
 import { MdContentCopy } from "react-icons/md"
-import { EmailChipInput } from '../Chip/Chip';
+import { ChipInput } from '../Chip/Chip';
 import PageContent from '../pageContent/pageContent';
 import { useState } from 'react';
 
@@ -110,7 +110,7 @@ const AIGeneration = ({ generation }) => {
                                         <Box><InfoIcon mx={1} boxSize={3} alignSelf="center" /> </Box>
                                     </Tooltip>
                                 </FormLabel>
-                                <EmailChipInput initialSeos={["Fleur de Sel", "Flaky Sea Salt", "Hand Harvested"]} name="seoKeywords" onChange={handleChange} setFieldValue={setFieldValue} disabled={false} />
+                                <ChipInput initialSeos={["Fleur de Sel", "Flaky Sea Salt", "Hand Harvested"]} name="seoKeywords" onChange={handleChange} setFieldValue={setFieldValue} disabled={false} />
                                 {errors.seoKeywords && touched.seoKeywords ? (<Text fontSize={14} color="#ff0000">{errors.seoKeywords}</Text>) : null}
                             </FormControl>
                             <Flex direction="row" align="center" my={7} cursor="pointer" onClick={() => { setShowAdvancedOptions(!showAdvancedOptions) }}>

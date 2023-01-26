@@ -25,7 +25,7 @@ export const Chip = ({ seo, onCloseClick }) => {
 }
 
 
-export const EmailChipInput = ({ initialSeos, setFieldValue, disabled }) => {
+export const ChipInput = ({ initialSeos, setFieldValue, disabled }) => {
     const [inputValue, setInputValue] = useState("");
     const [seos, setSeos] = useState(initialSeos);
 
