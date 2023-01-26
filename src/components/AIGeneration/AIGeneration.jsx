@@ -234,7 +234,7 @@ const AIGeneration = ({ generation }) => {
                     )}
                 </Formik>
             </Box>
-            <PageContent generation={generation} />
+            <PageContent generation={generation} setOverlay={setOverlay} />
         </Flex >
     )
 }

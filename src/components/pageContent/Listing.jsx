@@ -8,7 +8,7 @@ import { FcDocument } from "react-icons/fc";
 import { useState } from 'react';
 import TypewriterComponent from 'typewriter-effect';
 
-const Listing = () => {
+const Listing = ({ setOverlay }) => {
     const [showPaywall, setShowPaywall] = useState(false);
     const product = [
         {
@@ -67,7 +67,7 @@ const Listing = () => {
                                     />
                                 </Text>
                                 <Flex direction="column" align="center" justify="center">
-                                    <Button variant='link' _hover={{
+                                    <Button onClick={() => setOverlay(true)} variant='link' _hover={{
                                         textDecoration: 'none',
                                     }} > <Icon as={AiOutlineReload} mb={2} boxSize={6} /> </Button>
                                     <Button onClick={() => copyText(pr.title)} variant='link' _hover={{
@@ -93,7 +93,7 @@ const Listing = () => {
                                         </ListItem>
                                     </UnorderedList>
                                 </Box>
-                                <Flex direction="column" align="center" justify="center">
+                                <Flex onClick={() => setOverlay(true)} direction="column" align="center" justify="center">
                                     <Button variant='link' _hover={{
                                         textDecoration: 'none',
                                     }} > <Icon as={AiOutlineReload} mb={2} boxSize={5} /> </Button>
@@ -142,7 +142,7 @@ const Listing = () => {
 
                         </Box>
                         <Flex direction="column" align="center" justify="center">
-                            <Button variant='link' _hover={{
+                            <Button onClick={() => setOverlay(true)} variant='link' _hover={{
                                 textDecoration: 'none',
                             }} > <Icon as={AiOutlineReload} mb={2} boxSize={5} /> </Button>
                             <Button variant='link' _hover={{
