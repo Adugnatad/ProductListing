@@ -3,24 +3,19 @@ import * as Yup from 'yup';
 import {
     FormControl,
     FormLabel,
-    FormErrorMessage,
-    FormHelperText,
-    Checkbox,
-    CheckboxGroup,
     Text,
     Image,
     Input,
     Stack,
     Box,
-    Link,
     Button,
-    Center,
     Flex,
     RadioGroup,
     Radio,
     Textarea,
     Heading,
-    Tooltip
+    Tooltip,
+    Spinner
 } from '@chakra-ui/react'
 
 import { ChevronDownIcon, ChevronRightIcon, InfoIcon, SettingsIcon } from '@chakra-ui/icons';
@@ -38,8 +33,20 @@ const AIGeneration = ({ generation }) => {
         productFeatures: Yup.string().required('required'),
         seoKeywords: Yup.array().min(3, 'atleast 3 keywords required').required('required'),
     });
+    const [Overlay, setOverlay] = useState(false);
     return (
-        <Flex w="100%" direction={{ sm: "column", md: "row" }}>
+        <Flex w="100%" direction={{ sm: "column", md: "row" }} position="relative">
+            <Flex display={Overlay ? "flex" : "none"} alignItems="flex-start" justifyContent="center" w="100%" h="100%" bgColor="#FFFFFFBF" position="absolute" top="0" zIndex={2}>
+                <Box height="100vh" display="flex" flexDirection="row" alignItems="center">
+                    <Spinner
+                        thickness='4px'
+                        speed='0.65s'
+                        emptyColor='gray.200'
+                        color='#5A0505'
+                        size='xl'
+                    />
+                </Box>
+            </Flex>
             <Box w={{ sm: "90%", md: "35%" }} my="60px" px={10} mx={{ sm: "auto", md: 0 }} borderRightWidth="1px">
                 <Flex direction="row" align="center" mb="30px">
                     <Image src='/assets/FiSettings.svg' mr={2} />
@@ -62,6 +69,7 @@ const AIGeneration = ({ generation }) => {
                     }}
                     validationSchema={AIGenerationSchema}
                     onSubmit={(values) => {
+                        setOverlay(true);
                         alert(JSON.stringify(values, null, 2))
                     }}>
                     {({ values, errors, touched, handleChange, handleSubmit, setFieldValue }) => (
@@ -201,15 +209,16 @@ const AIGeneration = ({ generation }) => {
                                 </>
                             }
 
-                            <Button type='submit' colorScheme='brand' w="fit-content" mb={10}>
-                                {generation ? "Generate a Listing with AI" :
-                                    (<Flex direction="row" align="center">
+                            {generation ? <Button type='submit' colorScheme='brand' w="fit-content" mb={10}>
+                                Generate a Listing with AI </Button> :
+                                <Button colorScheme='brand' w="fit-content" mb={10}>
+                                    <Flex direction="row" align="center">
                                         <Image src='/assets/buttonIcon.svg' alt='' mx={3} />
                                         <Text mb={1}>Copy this Listing</Text>
                                         <Image src='/assets/buttonIcon.svg' alt='' mx={3} />
                                     </Flex>
-                                    )}
-                            </Button>
+                                </Button>
+                            }
                             <Stack spacing={1} display="flex" alignItems="flex-start">
                                 <Flex direction="row" align="center">
                                     <Icon as={AiOutlineReload} color="#7182A4" mr={2} />
