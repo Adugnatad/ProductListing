@@ -10,10 +10,10 @@ import { useEffect, useRef, useState } from "react";
 
 
 
-export const Chip = ({ seo, onCloseClick }) => {
+export const Chip = ({ seo, onCloseClick, disabled }) => {
 
     return (
-        <Tag key={seo} borderRadius={5} variant="solid" backgroundColor="#BEE3F8" color="#000" m={2} >
+        <Tag key={seo} borderRadius={5} variant="solid" backgroundColor={!disabled ? "#BEE3F8" : "#BEE3F8BF"} color={disabled ? "#CDD2DA" : "#000"} m={2} >
             <TagLabel>{seo}</TagLabel>
             <TagCloseButton
                 onClick={() => {
@@ -93,10 +93,10 @@ export const ChipInput = ({ initialSeos, setFieldValue, disabled }) => {
     return (
         <>
             <Box w="100%" borderWidth="1px" borderRadius="lg" backgroundColor="#EDF2F7" p={3} >
-                <Flex direction="row" justifyContent="start" w="100%" cursor="pointer" onClick={() => ref.current.focus()}>
+                <Flex direction="row" justifyContent="start" w="100%" cursor={!disabled ? "pointer" : "not-allowed"} onClick={() => ref.current.focus()}>
                     <Flex direction="row" flexWrap="wrap">
                         {seos.map((seo) => (
-                            <Chip seo={seo} key={seo} onCloseClick={handleCloseClick} />
+                            <Chip seo={seo} key={seo} onCloseClick={handleCloseClick} disabled={disabled} />
                         ))}
                         <Input
                             disabled={disabled}
