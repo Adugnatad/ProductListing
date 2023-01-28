@@ -92,7 +92,7 @@ export const ChipInput = ({ initialSeos, setFieldValue, disabled }) => {
     const ref = useRef(null);
     return (
         <>
-            <Box w="100%" borderWidth="1px" borderRadius="lg" backgroundColor="#EDF2F7" p={3} >
+            <Box w="100%" borderWidth={!disabled ? "1px" : 0} borderRadius="lg" backgroundColor={!disabled ? "#EDF2F7" : "#F7F9FB"} p={3} >
                 <Flex direction="row" justifyContent="start" w="100%" cursor={!disabled ? "pointer" : "not-allowed"} onClick={() => ref.current.focus()}>
                     <Flex direction="row" flexWrap="wrap">
                         {seos.map((seo) => (
