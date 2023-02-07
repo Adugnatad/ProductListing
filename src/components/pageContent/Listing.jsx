@@ -8,7 +8,7 @@ import { FcDocument } from "react-icons/fc";
 import { useEffect, useState } from 'react';
 import TypewriterComponent from 'typewriter-effect';
 import Typewriter from 'typewriter-effect';
-import Mark from 'mark.js';
+import { Highlight } from '@chakra-ui/react'
 
 const Listing = ({ setOverlay }) => {
     const [showPaywall, setShowPaywall] = useState(false);
@@ -32,7 +32,7 @@ const Listing = ({ setOverlay }) => {
 
         }
     ]
-    const keywords = ["Fleur de Sel", "Flaky Sea Salt"]
+    const keywords = ["Fleur de Sel", "Flaky Sea Salt",]
 
     const productDescription = [
         {
@@ -54,27 +54,6 @@ const Listing = ({ setOverlay }) => {
             debug: true,
             message: 'Press #{key} to copy',
         });
-    }
-
-    const highlight = (content, keywords, clss) => {
-        setTimeout(() => {
-            document.getElementById(clss).innerHTML = transformContent(content, keywords)
-        }, 500);
-    }
-
-    function transformContent(content, keywords) {
-        let temp = content
-
-        keywords.map(keyword => {
-
-            temp = temp.replace(new RegExp(keyword, 'gi'), wrapKeywordWithLink(keyword, `https://www.google.com/search?q=${keyword}`))
-        })
-
-        return temp
-    }
-
-    function wrapKeywordWithLink(keyword, link) {
-        return `<span style="font-weight: bold; color: #18A9FB">  ${keyword}  </span>`
     }
 
     return (
@@ -106,9 +85,10 @@ const Listing = ({ setOverlay }) => {
                                         }}
                                     />
                                 </Text> :
-                                    <Text id='context' fontSize="30px" fontWeight="semibold" mb={5} borderWidth="1px" p="2" w="100%">
-                                        {highlight(pr.title, keywords, "context")}
-                                        {pr.title}
+                                    <Text fontSize="30px" fontWeight="semibold" mb={5} borderWidth="1px" p="2" w="100%">
+                                        <Highlight query={keywords} styles={{ color: '#18A9FB', fontWeight: "bold" }}>
+                                            {pr.title}
+                                        </Highlight>
                                     </Text>
                                 }
                                 <Flex direction="column" align="center" justify="center">
@@ -141,9 +121,10 @@ const Listing = ({ setOverlay }) => {
                                                         delay: 30
                                                     }}
                                                 /> :
-                                                <Text id={index} fontSize="14px">
-                                                    {highlight(subt, keywords, index)}
-                                                    {subt}
+                                                <Text fontSize="14px">
+                                                    <Highlight query={keywords} styles={{ color: '#18A9FB', fontWeight: "bold" }}>
+                                                        {subt}
+                                                    </Highlight>
                                                 </Text>
                                             }
                                         </ListItem>
@@ -200,9 +181,10 @@ const Listing = ({ setOverlay }) => {
                                                     delay: 30
                                                 }}
                                             /> :
-                                            <Text id={`desc + ${index}`}>
-                                                {highlight(pd.body, keywords, `desc + ${index}`)}
-                                                {pd.body}
+                                            <Text>
+                                                <Highlight query={keywords} styles={{ color: '#18A9FB', fontWeight: "bold" }}>
+                                                    {pd.body}
+                                                </Highlight>
                                             </Text>
                                         }
                                     </Text>
