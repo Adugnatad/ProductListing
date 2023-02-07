@@ -24,7 +24,7 @@ function App() {
     }
   }
   return (
-    <Box h="100vh">
+    <Box minH="100vh">
       {showPage !== 0 && showPage !== 2 && showPage !== 7 && <Header />}
       {showPage === 4 && <AIGeneration generation={true} />}
       {showPage === 3 && <AIGeneration generation={false} />}

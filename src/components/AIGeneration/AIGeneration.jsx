@@ -1,4 +1,4 @@
-import { Formik, Form } from 'formik';
+import { Formik, Form, setIn } from 'formik';
 import * as Yup from 'yup';
 import {
     FormControl,
@@ -15,7 +15,8 @@ import {
     Textarea,
     Heading,
     Tooltip,
-    Spinner
+    Spinner,
+    Link
 } from '@chakra-ui/react'
 
 import { ChevronDownIcon, ChevronRightIcon, InfoIcon, SettingsIcon } from '@chakra-ui/icons';
@@ -24,18 +25,40 @@ import { AiOutlineReload } from "react-icons/ai"
 import { MdContentCopy } from "react-icons/md"
 import { ChipInput } from '../Chip/Chip';
 import PageContent from '../pageContent/pageContent';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+
+
+
+
 
 const AIGeneration = ({ generation }) => {
     const [showAdvancedOptions, setShowAdvancedOptions] = useState(false);
+    const [infoOpen, setInfoOpen] = useState(false);
     const AIGenerationSchema = Yup.object().shape({
         productName: Yup.string().required('Required'),
         productFeatures: Yup.string().required('required'),
         seoKeywords: Yup.array().min(3, 'atleast 3 keywords required').required('required'),
     });
     const [Overlay, setOverlay] = useState(false);
+    const ref = useRef(null);
+
+    // useEffect(() => {
+    //     setTimeout(() => {
+    //         if (infoOpen) {
+    //             window.addEventListener('mousedown', setInfoOpen(false))
+    //         }
+    //         else {
+    //             window.removeEventListener('mousedown', setInfoOpen(false))
+    //         }
+    //     }, 10000)
+    // }, [infoOpen]);
+
+    const handleInfoOpen = (e) => {
+        setInfoOpen(!infoOpen);
+    }
+
     return (
-        <Flex w="100%" direction={{ sm: "column", md: "row" }} position="relative">
+        <Flex w="100%" direction={{ sm: "column", md: "row" }} position="relative" >
             <Flex display={Overlay ? "flex" : "none"} alignItems="flex-start" justifyContent="center" w="100%" h="100%" bgColor="#FFFFFFBF" position="absolute" top="0" zIndex={2}>
                 <Box height="100vh" display="flex" flexDirection="row" alignItems="center">
                     <Spinner
@@ -77,8 +100,8 @@ const AIGeneration = ({ generation }) => {
                             <FormControl w="100%" mb={3}>
                                 <FormLabel color="#000" fontWeight="bold" display="flex" flexDirection="row" alignItems="center">
                                     Product / Listing Name:
-                                    <Tooltip hasArrow placement='top-start' openDelay={300} label='Product' fontSize='md'>
-                                        <Box><InfoIcon mx={1} boxSize={3} alignSelf="center" /> </Box>
+                                    <Tooltip hasArrow label="Product" placement="top" bg="black">
+                                        <button ><InfoIcon mx={1} boxSize={3} alignSelf="center" /> </button>
                                     </Tooltip>
                                 </FormLabel>
                                 <Input variant='filled' placeholder='Fleur de Sel Sea Salt' name='productName' onChange={handleChange} value={values.productName} />
@@ -87,8 +110,8 @@ const AIGeneration = ({ generation }) => {
                             <FormControl w="100%" mb={3}>
                                 <FormLabel color="#000" fontWeight="bold" display="flex" flexDirection="row" alignItems="center">
                                     Brand: [Optional]
-                                    <Tooltip hasArrow placement='top-start' openDelay={300} label='Brand' fontSize='md'>
-                                        <Box><InfoIcon mx={1} boxSize={3} alignSelf="center" /> </Box>
+                                    <Tooltip hasArrow label="Brand" placement="top" bg="black">
+                                        <button ><InfoIcon mx={1} boxSize={3} alignSelf="center" /> </button>
                                     </Tooltip>
                                 </FormLabel>
                                 <Input variant='filled' placeholder='Tablissima' name='brand' onChange={handleChange} value={values.brand} />
@@ -96,18 +119,18 @@ const AIGeneration = ({ generation }) => {
                             <FormControl w="100%" mb={3}>
                                 <FormLabel color="#000" fontWeight="bold" display="flex" flexDirection="row" alignItems="center">
                                     Product Features:
-                                    <Tooltip hasArrow placement='top-start' openDelay={300} label='Features' fontSize='md'>
-                                        <Box><InfoIcon mx={1} boxSize={3} alignSelf="center" /> </Box>
+                                    <Tooltip hasArrow label="Features" placement="top" bg="black">
+                                        <button ><InfoIcon mx={1} boxSize={3} alignSelf="center" /> </button>
                                     </Tooltip>
                                 </FormLabel>
-                                <Textarea variant='filled' placeholder='Sea Salt, Fleur de Sel, Caviar of Salt, Made in France, Trusted by the best chefs' name='productFeatures' onChange={handleChange} value={values.productFeatures} h={20} />
+                                <Textarea variant='filled' placeholder='Sea Salt, Fleur de Sel, Caviar of Salt, Made in France, Trusted by the best chefs' disabled name='productFeatures' onChange={handleChange} value={values.productFeatures} h={20} />
                                 {errors.productFeatures && touched.productFeatures ? (<Text fontSize={14} color="#ff0000">{errors.productFeatures}</Text>) : null}
                             </FormControl>
                             <FormControl w="100%" mb={3}>
                                 <FormLabel color="#000" fontWeight="bold" display="flex" flexDirection="row" alignItems="center">
                                     SEO Keywords:
-                                    <Tooltip hasArrow placement='top-start' openDelay={300} label='SEO' fontSize='md'>
-                                        <Box><InfoIcon mx={1} boxSize={3} alignSelf="center" /> </Box>
+                                    <Tooltip hasArrow label="SEO" placement="top" bg="black">
+                                        <button ><InfoIcon mx={1} boxSize={3} alignSelf="center" /> </button>
                                     </Tooltip>
                                 </FormLabel>
                                 <ChipInput initialSeos={["Fleur de Sel", "Flaky Sea Salt", "Hand Harvested"]} name="seoKeywords" onChange={handleChange} setFieldValue={setFieldValue} disabled={true} />
@@ -120,8 +143,8 @@ const AIGeneration = ({ generation }) => {
                                         : <ChevronRightIcon mr={1} boxSize={5} />}
                                     <Text fontWeight="bold"> Advanced [Optional]</Text>
                                 </Flex>
-                                <Tooltip hasArrow placement='top-start' openDelay={300} label='Advanced Options' fontSize='md'>
-                                    <Box><InfoIcon mx={1} boxSize={3} alignSelf="center" /> </Box>
+                                <Tooltip hasArrow label="Advanced Options" placement="top" bg="black">
+                                    <button ><InfoIcon mx={1} boxSize={3} alignSelf="center" /> </button>
                                 </Tooltip>
                             </Flex>
                             {showAdvancedOptions &&
@@ -129,8 +152,8 @@ const AIGeneration = ({ generation }) => {
                                     <FormControl w="100%" >
                                         <FormLabel color="#909090" fontWeight="bold" display="flex" flexDirection="row" alignItems="center">
                                             Bullet Points Focus: [Optional]
-                                            <Tooltip hasArrow placement='top-start' openDelay={300} label='Focus' fontSize='md'>
-                                                <Box><InfoIcon mx={1} boxSize={3} alignSelf="center" /> </Box>
+                                            <Tooltip hasArrow label="Focus" placement="top" bg="black">
+                                                <button ><InfoIcon mx={1} boxSize={3} alignSelf="center" /> </button>
                                             </Tooltip>
                                         </FormLabel>
                                         <Stack spacing={3}>
@@ -144,8 +167,8 @@ const AIGeneration = ({ generation }) => {
                                     <FormControl w="100%" my={7}>
                                         <FormLabel color="#909090" fontWeight="bold" display="flex" flexDirection="row" alignItems="center">
                                             Bullet Points Length: [Optional]
-                                            <Tooltip hasArrow placement='top-start' openDelay={300} label='Length' fontSize='md'>
-                                                <Box><InfoIcon mx={1} boxSize={3} alignSelf="center" /> </Box>
+                                            <Tooltip hasArrow label="Length" placement="top" bg="black">
+                                                <button ><InfoIcon mx={1} boxSize={3} alignSelf="center" /> </button>
                                             </Tooltip>
                                         </FormLabel>
                                         <RadioGroup defaultValue={values.bulletPointsLenth}>
@@ -165,8 +188,8 @@ const AIGeneration = ({ generation }) => {
                                     <FormControl w="100%" mb={7}>
                                         <FormLabel color="#909090" fontWeight="bold" display="flex" flexDirection="row" alignItems="center">
                                             Bullet Points Emoji : [Optional]
-                                            <Tooltip hasArrow placement='top-start' openDelay={300} label='Emoji' fontSize='md'>
-                                                <Box><InfoIcon mx={1} boxSize={3} alignSelf="center" /> </Box>
+                                            <Tooltip hasArrow label="Emoji" placement="top" bg="black">
+                                                <button ><InfoIcon mx={1} boxSize={3} alignSelf="center" /> </button>
                                             </Tooltip>
                                         </FormLabel>
                                         <RadioGroup defaultValue={values.bulletPointsEmoji}>
@@ -187,8 +210,8 @@ const AIGeneration = ({ generation }) => {
                                     <FormControl w="100%" mb={7}>
                                         <FormLabel color="#909090" fontWeight="bold" display="flex" flexDirection="row" alignItems="center">
                                             Descriptions Emoji : [Optional]
-                                            <Tooltip hasArrow placement='top-start' openDelay={300} label='Descriptions Emoji' fontSize='md'>
-                                                <Box><InfoIcon mx={1} boxSize={3} alignSelf="center" /> </Box>
+                                            <Tooltip hasArrow label="Descriptions Emoji" placement="top" bg="black">
+                                                <button ><InfoIcon mx={1} boxSize={3} alignSelf="center" /> </button>
                                             </Tooltip>
                                         </FormLabel>
                                         <RadioGroup defaultValue={values.descriptionEmoji}>

@@ -5,11 +5,20 @@ import { MdContentCopy } from "react-icons/md"
 import copy from 'copy-to-clipboard';
 import { AiFillFilePdf } from "react-icons/ai";
 import { FcDocument } from "react-icons/fc";
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import TypewriterComponent from 'typewriter-effect';
+import Typewriter from 'typewriter-effect';
+import Mark from 'mark.js';
 
 const Listing = ({ setOverlay }) => {
     const [showPaywall, setShowPaywall] = useState(false);
+    const [typewriterEffect, setTypewriterEffect] = useState({
+        title: true,
+        subtitles: true,
+        description: true
+    });
+
+    console.log(typewriterEffect);
     const product = [
         {
             title: "Fleur de Sel - Premium Sea salt from Guerande France - Flaky Sea Salt from the Celtic Sea - Salt Cork box - 3.5 Oz (100g)",
@@ -19,9 +28,11 @@ const Listing = ({ setOverlay }) => {
                 "CAVIAR OF SALT: This finishing salt is loved by the best culinary professionals. Rich in minerals and lower in sodium than regular salt, it will give a delicate and subtle taste to any of your favourite dishes.",
                 "MADE IN FRANCE: Our sea salt is harvested on the salt marshes of Guérande in France. Delicately picked from the surface of the water, it’s neither washed nor treated and drips naturally on our salt flats. Trusted by the best Chefs.",
                 "PREMIUM CORK BOX : Our Fleur de Sel sea salt comes in a premium carton box with a cork lid produced in France. The eco-friendly cardboard packaging and decorative cork lid make it a beautiful addition to any kitchen."
-            ]
+            ],
+
         }
     ]
+    const keywords = ["Fleur de Sel", "Flaky Sea Salt"]
 
     const productDescription = [
         {
@@ -30,7 +41,7 @@ const Listing = ({ setOverlay }) => {
         },
         {
             title: "Enhance any Dish",
-            body: "A sprinkle of fleur de sel sea salt is a must-have for any culinary enthusiast. Its unique flavor offers a gourmet experience that truly elevates the taste of any dish. This delicate sea salt enhances the natural flavors of a meal, making it more enjoyable and memorable. With its subtle, yet distinct flavor, it is sure to bring an extra special touch to any culinary masterpiece. It is a great accompaniment for a variety of dishes, from fish and seafood to salads and desserts. With fleur de sel sea salt, you can easily transform ordinary meals into extraordinary ones."
+            body: "B sprinkle of fleur de sel sea salt is a must-have for any culinary enthusiast. Its unique flavor offers a gourmet experience that truly elevates the taste of any dish. This delicate sea salt enhances the natural flavors of a meal, making it more enjoyable and memorable. With its subtle, yet distinct flavor, it is sure to bring an extra special touch to any culinary masterpiece. It is a great accompaniment for a variety of dishes, from fish and seafood to salads and desserts. With fleur de sel sea salt, you can easily transform ordinary meals into extraordinary ones."
         },
         {
             title: "Enhance any Dish",
@@ -44,28 +55,62 @@ const Listing = ({ setOverlay }) => {
             message: 'Press #{key} to copy',
         });
     }
+
+    const highlight = (content, keywords, clss) => {
+        setTimeout(() => {
+            document.getElementById(clss).innerHTML = transformContent(content, keywords)
+        }, 500);
+    }
+
+    function transformContent(content, keywords) {
+        let temp = content
+
+        keywords.map(keyword => {
+
+            temp = temp.replace(new RegExp(keyword, 'gi'), wrapKeywordWithLink(keyword, `https://www.google.com/search?q=${keyword}`))
+        })
+
+        return temp
+    }
+
+    function wrapKeywordWithLink(keyword, link) {
+        return `<a href="${link}" target="_blank"> <span style="font-weight: bold; color: #18A9FB">  ${keyword}  </span> </a>`
+    }
+
     return (
         <Box w="100%">
             <Flex direction="row" align="center" mt="60px" mb="25px">
                 <Image src='/assets/humburger.svg' mr={2} />
                 <Heading>Your Product Listing</Heading>
             </Flex>
-            <Stack spacing={10} pl={7}>
+            <Stack spacing={10} pl={7} >
                 <Stack spacing={3} w={{ sm: "100%", md: "90%" }}>
                     <Text fontSize="22px" fontWeight="bold">Product Title</Text>
                     {product.map((pr, index) => (
                         <Box key={index}>
                             <Flex direction="row" align="flex-start" >
-                                <Text fontSize="30px" fontWeight="semibold" mb={5} borderWidth="1px" p="2" w="100%">
-                                    <TypewriterComponent
+                                {typewriterEffect.title ? <Text fontSize="30px" fontWeight="semibold" mb={5} borderWidth="1px" p="2" w="100%">
+                                    <Typewriter
+                                        onInit={(typewriter) => {
+                                            typewriter.typeString(pr.title)
+                                                .callFunction(() => {
+                                                    setTypewriterEffect({ ...typewriterEffect, title: false });
+
+                                                })
+                                                .start();
+
+                                        }}
                                         options={{
-                                            strings: pr.title,
-                                            autoStart: true,
-                                            delay: 30,
-                                            cursor: ""
+                                            cursor: "",
+                                            delay: 30
                                         }}
                                     />
-                                </Text>
+                                </Text> :
+                                    <Text id='context' fontSize="30px" fontWeight="semibold" mb={5} borderWidth="1px" p="2" w="100%">
+                                        {highlight(pr.title, keywords, "context")}
+                                        {pr.title}
+                                    </Text>
+                                }
                                 <Flex direction="column" align="center" justify="center">
                                     <Button onClick={() => setOverlay(true)} variant='link' _hover={{
                                         textDecoration: 'none',
@@ -76,20 +121,31 @@ const Listing = ({ setOverlay }) => {
                                 </Flex>
                             </Flex>
                             <Text fontSize="22px" fontWeight="bold" mb={5}>Bullet Points</Text>
-
                             {pr.subtitle?.map((subt, index) =>
                             (<Flex key={index} fontSize="14px" align="flex-start">
                                 <Box borderWidth="1px" p={2} px={4} mb={4} w="100%">
                                     <UnorderedList>
                                         <ListItem >
-                                            <TypewriterComponent
-                                                options={{
-                                                    strings: subt,
-                                                    autoStart: true,
-                                                    delay: 30,
-                                                    cursor: ""
-                                                }}
-                                            />
+                                            {typewriterEffect.subtitles ?
+                                                <Typewriter
+                                                    onInit={(typewriter) => {
+                                                        typewriter.typeString(subt)
+                                                            .callFunction(() => {
+                                                                setTypewriterEffect({ ...typewriterEffect, title: false, subtitles: false });
+                                                            })
+                                                            .start();
+
+                                                    }}
+                                                    options={{
+                                                        cursor: "",
+                                                        delay: 30
+                                                    }}
+                                                /> :
+                                                <Text id={index} fontSize="14px">
+                                                    {highlight(subt, keywords, index)}
+                                                    {subt}
+                                                </Text>
+                                            }
                                         </ListItem>
                                     </UnorderedList>
                                 </Box>
@@ -113,7 +169,7 @@ const Listing = ({ setOverlay }) => {
                     <Stack direction="row" ml={2} alignItems="flex-start" w={{ sm: "100%", md: "90%" }} filter={showPaywall && "blur(5px)"} userSelect={showPaywall && "none"} pointerEvents={showPaywall && "none"} position="relative">
                         <Box borderWidth="1px" p={2} px={2} w="100%">
                             {productDescription.map((pd, index) => (
-                                <Box mb={2}>
+                                <Box key={index} mb={2}>
                                     <Flex direction="row" align="center">
                                         <Text fontWeight="bold" fontSize="17px">
                                             {!showPaywall ? <TypewriterComponent
@@ -125,17 +181,30 @@ const Listing = ({ setOverlay }) => {
                                                 }}
                                             />
                                                 : pd.title}
+
                                         </Text>
                                     </Flex>
-                                    <Text fontWeight="">
-                                        {!showPaywall ? <TypewriterComponent
-                                            options={{
-                                                strings: pd.body,
-                                                autoStart: true,
-                                                delay: 30,
-                                                cursor: ""
-                                            }}
-                                        /> : pd.body}
+                                    <Text>
+                                        {typewriterEffect.description && !showPaywall ?
+                                            <Typewriter
+                                                onInit={(typewriter) => {
+                                                    typewriter.typeString(pd.body)
+                                                        .callFunction(() => {
+                                                            setTypewriterEffect({ title: false, subtitles: false, description: false });
+                                                        })
+                                                        .start();
+
+                                                }}
+                                                options={{
+                                                    cursor: "",
+                                                    delay: 30
+                                                }}
+                                            /> :
+                                            <Text id={`desc + ${index}`}>
+                                                {highlight(pd.body, keywords, `desc + ${index}`)}
+                                                {pd.body}
+                                            </Text>
+                                        }
                                     </Text>
                                 </Box>
                             ))}

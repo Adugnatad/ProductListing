@@ -3,7 +3,7 @@ import React from 'react'
 
 const Footer = () => {
     return (
-        <Flex flexDirection="column" w="100%" bgColor="#000" align="center" pt="4" pb="5">
+        <Flex flexDirection="column" w="100%" bgColor="#000" align="center" pt="4" pb="5" position="absolute" top="100%">
             <Image src='/assets/footerLogo.svg' />
         </Flex>
     )

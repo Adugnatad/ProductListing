@@ -10,7 +10,7 @@ const Upgrade = () => {
             <Flex direction="column" align="center" w="100%" py={3} px={5} my={10} alignSelf="center">
                 <FormControl display='flex' alignItems='center' w="fit-content" px={2} py={2} bgColor="#fff" borderRadius={5}>
                     <FormLabel htmlFor='email-alerts' mb='0'>
-                        Pay Annually and Save!
+                        Pay Monthly and Save!
                     </FormLabel>
                     <Switch id='email-alerts' colorScheme='brand' defaultChecked />
                 </FormControl>
@@ -36,7 +36,7 @@ const Upgrade = () => {
                                 <Text fontSize={40} fontWeight="bold" lineHeight="10">49</Text>
                                 <Text fontSize={16} fontWeight="semibold" color="#C4C4C4" alignSelf="flex-end" lineHeight="10">/month</Text>
                             </Flex>
-                            <Text color="#C4C4C4" fontSize="13px" >Billed Annually</Text>
+                            <Text color="#C4C4C4" fontSize="13px" >Billed Monthly</Text>
 
                         </Stack>
                         <Button colorScheme='orange' variant='outline' height="30px" width="150px" borderRadius={3}>
@@ -65,7 +65,7 @@ const Upgrade = () => {
                                 <Text fontSize={40} fontWeight="bold" lineHeight="10">99</Text>
                                 <Text fontSize={16} fontWeight="semibold" color="#C4C4C4" alignSelf="flex-end" lineHeight="10">/month</Text>
                             </Flex>
-                            <Text color="#C4C4C4" fontSize="13px" >Billed Annually</Text>
+                            <Text color="#C4C4C4" fontSize="13px" >Billed Monthly</Text>
 
                         </Stack>
                         <Button colorScheme='orange' variant='outline' height="30px" width="150px" borderRadius={3}>
