@@ -32,7 +32,7 @@ const Listing = ({ setOverlay }) => {
 
         }
     ]
-    const keywords = ["Fleur de Sel", "Flaky Sea Salt",]
+    const keywords = ["Fleur de Sel", "Flaky Sea Salt"]
 
     const productDescription = [
         {
