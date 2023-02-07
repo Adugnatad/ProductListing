@@ -74,7 +74,7 @@ const Listing = ({ setOverlay }) => {
     }
 
     function wrapKeywordWithLink(keyword, link) {
-        return `<a href="${link}" target="_blank"> <span style="font-weight: bold; color: #18A9FB">  ${keyword}  </span> </a>`
+        return `<span style="font-weight: bold; color: #18A9FB">  ${keyword}  </span>`
     }
 
     return (
