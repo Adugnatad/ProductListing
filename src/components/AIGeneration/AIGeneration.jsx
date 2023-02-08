@@ -16,7 +16,9 @@ import {
     Heading,
     Tooltip,
     Spinner,
-    Link
+    Link,
+    CircularProgress,
+    CircularProgressLabel
 } from '@chakra-ui/react'
 
 import { ChevronDownIcon, ChevronRightIcon, InfoIcon, SettingsIcon } from '@chakra-ui/icons';
@@ -32,45 +34,37 @@ import { useEffect, useRef, useState } from 'react';
 
 
 const AIGeneration = ({ generation }) => {
+    const [progress, setProgress] = useState(0);
     const [showAdvancedOptions, setShowAdvancedOptions] = useState(false);
-    const [infoOpen, setInfoOpen] = useState(false);
     const AIGenerationSchema = Yup.object().shape({
         productName: Yup.string().required('Required'),
         productFeatures: Yup.string().required('required'),
         seoKeywords: Yup.array().min(3, 'atleast 3 keywords required').required('required'),
     });
     const [Overlay, setOverlay] = useState(false);
-    const ref = useRef(null);
 
-    // useEffect(() => {
-    //     setTimeout(() => {
-    //         if (infoOpen) {
-    //             window.addEventListener('mousedown', setInfoOpen(false))
-    //         }
-    //         else {
-    //             window.removeEventListener('mousedown', setInfoOpen(false))
-    //         }
-    //     }, 10000)
-    // }, [infoOpen]);
-
-    const handleInfoOpen = (e) => {
-        setInfoOpen(!infoOpen);
-    }
+    useEffect(() => {
+        if (progress < 100 && Overlay) {
+            setTimeout(() => {
+                setProgress(progress + 1);
+            }, 50)
+        } else {
+            setOverlay(false);
+            setProgress(0);
+        }
+    }, [progress, Overlay])
 
     return (
         <Flex w="100%" direction={{ sm: "column", md: "row" }} position="relative" >
             <Flex display={Overlay ? "flex" : "none"} alignItems="flex-start" justifyContent="center" w="100%" h="100%" bgColor="#FFFFFFBF" position="absolute" top="0" zIndex={2}>
                 <Box height="100vh" display="flex" flexDirection="row" alignItems="center">
-                    <Spinner
-                        thickness='4px'
-                        speed='0.65s'
-                        emptyColor='gray.200'
-                        color='#5A0505'
-                        size='xl'
-                    />
+
+                    <CircularProgress value={progress} color='#5A0505' size={55}>
+                        <CircularProgressLabel>{progress}%</CircularProgressLabel>
+                    </CircularProgress>
                 </Box>
             </Flex>
-            <Box w={{ sm: "90%", md: "35%" }} my="60px" px={10} mx={{ sm: "auto", md: 0 }} borderRightWidth="1px">
+            <Box w={{ sm: "90%", md: "30%" }} my="60px" px={10} mx={{ sm: "auto", md: 0 }} borderRightWidth="1px">
                 <Flex direction="row" align="center" mb="30px">
                     <Image src='/assets/FiSettings.svg' mr={2} />
                     <Heading>AI Generation</Heading>
@@ -123,7 +117,7 @@ const AIGeneration = ({ generation }) => {
                                         <button ><InfoIcon mx={1} boxSize={3} alignSelf="center" /> </button>
                                     </Tooltip>
                                 </FormLabel>
-                                <Textarea variant='filled' placeholder='Sea Salt, Fleur de Sel, Caviar of Salt, Made in France, Trusted by the best chefs' disabled name='productFeatures' onChange={handleChange} value={values.productFeatures} h={20} />
+                                <Textarea variant='filled' placeholder='Sea Salt, Fleur de Sel, Caviar of Salt, Made in France, Trusted by the best chefs' name='productFeatures' onChange={handleChange} value={values.productFeatures} h={20} />
                                 {errors.productFeatures && touched.productFeatures ? (<Text fontSize={14} color="#ff0000">{errors.productFeatures}</Text>) : null}
                             </FormControl>
                             <FormControl w="100%" mb={3}>

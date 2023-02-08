@@ -7,7 +7,7 @@ const PageContent = ({ generation, setOverlay }) => {
 
 
     return (
-        <Box w={{ sm: "100%", md: "60%" }} px={10} mb="50px">
+        <Box w={{ sm: "100%", md: "70%" }} px={10} mb="50px">
             {!generation ? <Generation /> : <Listing setOverlay={setOverlay} />}
 
         </Box >
