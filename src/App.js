@@ -24,7 +24,7 @@ function App() {
     }
   }
   return (
-    <Box minH="100vh">
+    <Box minH="100vh" display="flex" flexDirection="column" >
       {showPage !== 0 && showPage !== 2 && showPage !== 7 && <Header />}
       {showPage === 4 && <AIGeneration generation={true} />}
       {showPage === 3 && <AIGeneration generation={false} />}
@@ -35,7 +35,7 @@ function App() {
       {showPage === 0 && <Login />}
       {showPage === 2 && <Signup />}
       <button onClick={showPages}>Next</button>
-      {showPage !== 0 && showPage !== 2 && showPage !== 7 && <Footer />}
+      <Footer />
     </Box>
   )
 }

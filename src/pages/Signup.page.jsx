@@ -26,7 +26,7 @@ function Signup() {
     });
     return (
 
-        <Box display="flex" flexDirection={{ sm: "column-reverse", md: "row" }} alignItems={{ sm: "center", md: "normal" }} justifyContent={{ sm: "start", md: "between" }} w="full" h="100vh">
+        <Box display="flex" flexDirection={{ sm: "column-reverse", md: "row" }} alignItems={{ sm: "center", md: "normal" }} justifyContent={{ sm: "start", md: "between" }} w="full" minH="100vh">
             <Box w={{ sm: "90%", md: "30%" }} display="flex" flexDirection="column" alignItems="center" justifyContent="center" position="relative">
                 <Flex display={Overlay ? "flex" : "none"} alignItems="center" justifyContent="center" w="100%" h="100%" bgColor="#5A05052F" position="absolute" top="0" zIndex={2}>
                     <Spinner

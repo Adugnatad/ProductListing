@@ -154,8 +154,8 @@ const TableListing = () => {
         }
     }
     return (
-        <TableContainer mx={{ md: 10 }} h="100%">
-            <Flex direction={{ sm: "column", md: "row" }} justifyContent={{ md: "space-between" }} align="center" px="30px" my={{ sm: "40px", md: "60px" }}>
+        <TableContainer mx={{ md: 10 }}>
+            <Flex direction={{ sm: "column", md: "row" }} justifyContent={{ md: "space-between" }} align="center" px="30px" my="50px">
                 <Heading mb={3}>Listings</Heading>
                 <Stack spacing={4} w={{ sm: "100%", md: "fit-content" }}>
                     <InputGroup>
