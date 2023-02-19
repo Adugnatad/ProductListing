@@ -35,7 +35,7 @@ function App() {
       {showPage === 0 && <Login />}
       {showPage === 2 && <Signup />}
       <button onClick={showPages}>Next</button>
-      <Footer />
+      {showPage !== 0 && showPage !== 2 && <Footer />}
     </Box>
   )
 }
