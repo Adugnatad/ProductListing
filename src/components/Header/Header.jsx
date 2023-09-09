@@ -11,14 +11,33 @@ import {
   useDisclosure,
   Image,
 } from "@chakra-ui/react";
+import React from "react";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 
 const Header = () => {
   const linkColor = useColorModeValue("white", "black");
   const { isOpen, onToggle } = useDisclosure();
+  const [currentPath, setCurrentPath] = React.useState(
+    window.location.pathname
+  );
+
+  React.useEffect(() => {
+    setCurrentPath(window.location.pathname);
+  }, []);
+  console.log(currentPath);
 
   return (
-    <Box>
+    <Box
+      className={`
+    ${
+      currentPath === "/" ||
+      currentPath === "/signup" ||
+      currentPath === "/reset"
+        ? "hidden"
+        : ""
+    }
+  `}
+    >
       <Flex
         bg={useColorModeValue("black", "white")}
         color={useColorModeValue("white", "black")}
@@ -101,9 +120,16 @@ const Header = () => {
           >
             2 Credits
           </Button> */}
-          <Button fontSize={"sm"} fontWeight={600} color={"white"} bg="#3182CE">
-            <Link href="/upgrade">Upgrade</Link>
-          </Button>
+          <Link href="/upgrade">
+            <Button
+              fontSize={"sm"}
+              fontWeight={600}
+              color={"white"}
+              bg="#3182CE"
+            >
+              Upgrade
+            </Button>
+          </Link>
         </Stack>
       </Flex>
       <Collapse in={isOpen} animateOpacity>
@@ -176,7 +202,7 @@ const MobileNavItem = ({ label, children, href }) => {
 const NAV_ITEMS = [
   {
     label: "New",
-    page: "",
+    page: "/new",
   },
   {
     label: "Listings",

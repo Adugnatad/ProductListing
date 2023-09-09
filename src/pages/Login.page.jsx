@@ -1,8 +1,6 @@
 import {
   FormControl,
   FormLabel,
-  FormErrorMessage,
-  FormHelperText,
   Checkbox,
   CheckboxGroup,
   Text,
@@ -22,6 +20,7 @@ import { FcGoogle } from "react-icons/fc";
 import LandingPage from "../components/LandingPage/LandingPage";
 import * as Yup from "yup";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [Overlay, setOverlay] = useState(false);
@@ -29,6 +28,7 @@ const Login = () => {
     email: Yup.string().email("Invalid email").required("Required"),
     password: Yup.string().required("required"),
   });
+  const navigate = useNavigate();
   return (
     <Box
       display="flex"
@@ -36,7 +36,7 @@ const Login = () => {
       alignItems={{ sm: "center", md: "normal" }}
       justifyContent={{ sm: "start", md: "between" }}
       w="full"
-      minH="100vh"
+      // minH="100vh"
     >
       <Box
         width={{ sm: "90%", md: "30%" }}
@@ -46,6 +46,7 @@ const Login = () => {
         justifyContent="center"
         py={5}
         position="relative"
+        height="100vh"
       >
         <Flex
           display={Overlay ? "flex" : "none"}
@@ -119,7 +120,9 @@ const Login = () => {
             validationSchema={LoginSchema}
             onSubmit={(values) => {
               setOverlay(true);
-              alert(JSON.stringify(values, null, 2));
+              setTimeout(() => {
+                navigate("/home");
+              }, [2000]);
             }}
           >
             {({ values, errors, touched, handleChange, handleSubmit }) => (
@@ -170,7 +173,7 @@ const Login = () => {
                     Sign In
                   </Button>
                 </Box>
-                <Link color="#5897f9" href="#" fontSize="14px">
+                <Link color="#5897f9" href="/reset" fontSize="14px">
                   Forgot your password?
                 </Link>
               </Box>

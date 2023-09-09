@@ -1,27 +1,27 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import { ChakraProvider, extendTheme } from '@chakra-ui/react';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 
 export const theme = extendTheme({
   colors: {
     brand: {
-      50: '#F96F02',
-      500: '#F96F02',
-      900: '#F96F02',
-    }
+      50: "#F96F02",
+      500: "#F96F02",
+      900: "#F96F02",
+    },
   },
   breakpoints: {
-    sm: '0px',
-    md: '970px',
-    lg: '960px',
-    xl: '1200px',
-    '2xl': '1536px',
-  }
-})
-const root = ReactDOM.createRoot(document.getElementById('root'));
+    sm: "0px",
+    md: "970px",
+    lg: "960px",
+    xl: "1200px",
+    "2xl": "1536px",
+  },
+});
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <ChakraProvider theme={theme}>
     <App />
