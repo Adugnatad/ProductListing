@@ -344,7 +344,7 @@ const Listing = ({ setOverlay }) => {
             </Button>
           </Flex>
         </Flex>
-        <Stack
+        {/* <Stack
           direction={{ sm: "column", md: "row" }}
           justifyContent="center"
           alignItems={{ sm: "center", md: "normal" }}
@@ -369,7 +369,7 @@ const Listing = ({ setOverlay }) => {
           >
             Export Word
           </Button>
-        </Stack>
+        </Stack> */}
       </Stack>
     </Box>
   );

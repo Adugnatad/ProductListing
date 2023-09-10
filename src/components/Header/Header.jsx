@@ -17,27 +17,9 @@ import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 const Header = () => {
   const linkColor = useColorModeValue("white", "black");
   const { isOpen, onToggle } = useDisclosure();
-  const [currentPath, setCurrentPath] = React.useState(
-    window.location.pathname
-  );
-
-  React.useEffect(() => {
-    setCurrentPath(window.location.pathname);
-  }, []);
-  console.log(currentPath);
 
   return (
-    <Box
-      className={`
-    ${
-      currentPath === "/" ||
-      currentPath === "/signup" ||
-      currentPath === "/reset"
-        ? "hidden"
-        : ""
-    }
-  `}
-    >
+    <Box>
       <Flex
         bg={useColorModeValue("black", "white")}
         color={useColorModeValue("white", "black")}

@@ -13,11 +13,6 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 function App() {
   return (
     <BrowserRouter>
-      {
-        <React.Fragment>
-          <Header />
-        </React.Fragment>
-      }
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
